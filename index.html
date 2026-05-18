@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AVPN · Community + Event</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"></script>
+  <style>
+    html, body, #root { background: #0B1F1A; }
+    body { font-family: 'Inter', -apple-system, system-ui, sans-serif; }
+    ::-webkit-scrollbar { display: none; }
+    @keyframes slideup { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  </style>
+</head>
+<body style="background-color: rgb(19, 11, 31)">
+  <div id="root"></div>
+  <script>
+    window.__resources = { avpnLogo: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADQCAYAAADbGh9AAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAACWKADAAQAAAABAAAA0AAAAABjwtjAAAAkMklEQVR4Ae2dW5LkNs5Gsyr+NTjmocd+HG9nvBuvoHfT3o79aI8fHL2Irp9Qp7KUKt2Jj9fTER2pKwkcgCAIKbNebvy7/e+nH/47Ynh5u30etx+fL6//eWy/ffvjsX3feHu5/To99u8/v/423e9t23g+OI7s7tyMVe98evMH0/eDT+APT25ADHrCwU4GAlMftO4fMXwqyxjP7djOXEicDwyn7FreHp3nyWmmzqJQfjKJWPOtO9wwid5ev+yiDFw+/fX1593ruKB6AvjEuwmJQe8s2MpH4IMfJpoHTeOxGNH6XDhat9kE68mJ1A400jzyGZKLFp3s7x9/+P12kvPb7dsvvQy0I67R2jWnfeI+NlrxCWJQax5dpz7mh4/CwskYLdW40blwyqypBOvhSCU50ZT20nYDk8rpiXTCgSRrAqOhzb9/+tfbVXVq9gli0FWrc58nAfzQk+b1tppIsAZnOvJo6jqnNHdWmGzFJFcD1KAzjwvTuFeqXnr0CWJQKu+inzUCVSZVa8pUOBcuqVJtgtWUM80tU4lzuU0qJFlzD6h238snaqhiEYOqddOmBMcPyzVndQmWVwAv1yQzyQpOtqIrFRNVa5hQJ+KyuUIg5tHgvMlPf/5TZHwiBs0txX5qAk0nVWswK1yIFxnAlvh6TuZL7Rd/rLBEy32SqXDwFO8ziQX09onSkm5i0Pcv6LTyJYTEw8Oluy4Tqzm5iuaKohMsnGnuWWG/kETLezI1TUubUBfoc2iDgGf1auimgEBKDFoweCExaEGyZg/hhwumLSA+LEj1dOj1aa+gHVstvtiL6zV9IzAFv8DDuBgfG3QpukzVx+OrxKk6pB83Aq35ooEhBq24R8MxaEXjbIdtXOGHK/iDH9qiruTYU1wFy2ANidUKUw7PCGTK4m3QK5Jfqlgz+1ay6169Mr0z+TYx6KTTZbLTSSmru1wVY6sDcUTg4IMl/pWQYipYT5n6EaBc851Apix+/LFUbzNQxfImqm9vmAj03ch7IAZdRJwpBl2UtvjbBj+035ELXIsXthQBA6vxyU4pIpkcRSRYlEDjXWJ0Lhuc8a1lbCEMlOp1yIgvS9cNTATEoHjPaSYGxaO41AIJ/iVszzeFWFTSY8OsCdboUGTqzz5yee+exdeeoFDFuuwByW9UVq9UVdIpJGLQlIbDdiMxyIHEqSbMD4dXYxpYrJxSXHTxmOyLmj/cbLZ3sB4OdVhULjxFIMF7EcPkKgoIvIt1ytrZLpa8e3XXRv07WMQgsdskiEFiDZI0r4yjSRQovJOcc0mWCtajHF+4YaoWLyQ+xtkmEZUeygoDVSyV1fzaHSYGv+aeWrKg+HTAeYcY5Ax0qbkEMWip21qOWWweFiiiRWotHNRy5qxmJa1gDSvGt9tnHgmqXeq5fWUGP0yyogChlPuZEHtXCNRYvSIGXbF0/D2M5WeGgx+28Pdzn9Uqey9DRTVZBevhUKLJuGzL5pVOmcFTxcpr21y911i9Igbl8pbbTRmD8ml1rWeqp9e4Rd9lFdXEv5uVpIL1CGzRhGggioAog6eKFWWV6m5Wj2fFu1dqmaszYi6BRTEolzpn+1XGyrOy9Hx9qoqqvIJFYCvIjS2Dtx8Idf5HFcsZaOHNKd+Ps8DnrT4xyJtoRHuiGBQhUbJbSa6Sod7tyCqqFhd2L4y8QFrBqt6hwmprlW/NjzoFq0ilrVOtNlZtzYkHAXWy4l29UvrlA4pygxikpJusbfwwGepTHannFlmCVYVD3YPXtAJz5S/FTzPhx+q+9ATMOcmSTrzOsp4agVz8REA5rr2DnVLWJygxO8Sgn2Pw1XAvflj4L9IL5xdJglW0QwWYllBdSaTODuYh6bBvTdq/EhMuZ8dS2t178j1rS66/3WpKopW+GO0LxKB3hM4x6L3hMraU37SN0jBwt/uTz4UlzoMDiG9/fPrrq3uy755gSYPwVY9KGNDWRDQudm6ocJXkZI4BTm1778dHa7bi+DIBZdLimUCr/XCZzs5RYtA6IMcYtN5J+jPK8XJJm7sP2r0pCgxrMg7js8Cfa/KMQaPurglWUYGtgIA2Qp5/Gic7Zi/azc9l2XcMcMqgohgAWXhX2Kl0bDv6n1TOs3YjBh0n5ugDxzvVXamMg6ekvvug3ZMzqVqTeRivBSVb3nOMW4JVSmDzBrTmGF7Hi3EwpwCn9gOqWF6ed64d5YThNWbVvneUmJc+R/uLva61GBTLI/Z+5Vg5LFvByf2aDkVwC8J5jl+XBKuEwOYJZc0BlMdLCHJeDJUDxUtGpS1ba1s6vitJ7I/YtHbfbCkGHbGX4hpl7Dskb4WJ1VwvabyZd7ay77WQj06wcsOoPajN7Zs7yHnwVPuEl/PP2bO/TEA5adTgb8tU3o966PDeWv6tFmJQDorKcbKrTwOJ1VxH9Twy7+9p32nhF51gZXMqJwBPUAvayelcHhOG0i885CvI1EWLIvVDpzGs9LVN4zjJv9lHxpNS2+/oVdsYh9WOQS+eHrjmekfLYXxHJVhZAltQOtVXSy/6hOttuRh7fGVV+RVlqliubrbamNL/PCZRpXyrUIhBq2jcTjhMbm6yHGhIGetWu6+M0aoeB07kSmBjY9TlBCuLwh051NTnamUtnfw69YWpX6i3pX7nYD+pfGtwHeRea7rk47Bet440zq10GzvxrzRb/OHaWF/6W4Q5Bps5lEdVpXgPWhDQvl5r+i+c0h0Kv9Vldo7pQGqvkn5LLAZSwfc+/iqBQMbpX0+40jwx6Aq16/fUGoOua3zszuQTfkjwe02uzCLDnBIYHLOOz1UxcfBSBSu1U/XsUHMXqY29VN5Oqwlzn1DsSxMYB7tJ/WoBKDHoHQrsv7OQjpF33O9bDuPmvbG6t2phf7qClXRwmUP9+c9LiT+Qlss9U2fwMdm7MaKKlctT4vqNtftW77HVK2LQFl39udpikIpIyh+KtgRfGktVkETtPiqqIUcQdfHc7MUnOqcSLMsak/1NPbL1ZwNP9myg2YCbHNJtXnSsqUBKWYfJdtoZ29EEpOM8jOuYBZNUtjk5YtCcyGO/thj0ENxpI2XcoXq6bDSLIymT/SsJ9akES7mqnSIkW5/SWN5+ZPDLp12PXnGsqQAxE+q0ncVt3sVaxBJzMNbeW33HVq+IQVt0056rKQZ5kkmZ5JNc7VsuZZJ1NrE+nGClciocat+hxitSBrizjjXKOH6aXcdt789Y2bzlqbm9YZyrFKikekUMOu4ANcWg41ptX5kkybfqKa/HbBticjZZRfXkE53DCZZyVTtyIrCNJI5/JgtwJx1rroHJOT/mth8pm5scDTSkHOfDSjOCkVK2USxi0Eji+GctMei4RutXJis0vNx+XZeCM0sEhjkmJKZL5zyPnUmwDyVYSSoEkatbT4C1tZUqwMVOcMoq1hmnr82+qeRVV69i9CAGxdDT31tLDIohYeMjNgYe6Z8k/wil5WuSPC48saDfTbCSZOxWDg0vbi8j4+gRAqkCXMwkPKwwjihz5ZoTTn+l+R7uUU4eMeObGFSH99UQg2JIpljEkVzFWOj7vSmSrKOxcjfBkjsVyVW8R91bGBIYcYn0qGOtKUUVa41M3uMxifOu5JE+SQzaJVzMBTXEoCuwUiT5JFdXLLN8T8yCbrnFj0ePxMzNBCuJU/Gs+aPlIo6kyN6PONaaClSx1sjkPR6bOG9JHxPsiEFbZMs8V3oMukItRZIvjY1XlK78HuVi3tAciZmbCZbaqcjYNR4c+1X4Pali/ULp+LGy7ene4vmYhHmXR+HVK2LQrgUvXVB6DDqtVHgF4fQ9J26IWYSc6KarS1NUU/di52aCJf1R0RB4ydg1/m5clUmM+cWeY21pJnX8SNm25G713JGV2FXdoycO5cRGDLpq1t37So9BuwpMLoiJdZNmVjelsXq11z5OqKupe7FzNcGSfmsnBLbowNuHf1zWUprEBKliK0XKFW6sbJehV3ijcpzHThxK2W7EILm3lh6DjgLYm0SPtrN0HRXUJSq+x9S5xlYCvppgKatXysnV1zR1tyZ1rMhKkTT4RspWt9VPSi+sEA02PinO0+VC2YhBT6RlOyXHoCNKb02eR+7fvIYK6iYez5Oxi70tWbYS8MUEC6fawlnXOaljvd0+x9BQTnJUsfYto6wQxfodMWjffrVcEesLW3qqx7myfWX822LW4znpgj4AXYtXiwmW0qmkK5oePWdHZ6ljRVYY1LKtOf0Osn5OR9pvC1Rs9YoYtEW3rnPqca6iMcQP1RiheqUy22q7yoR2LV59SLCUTqVcyaxS5cRNmdTGJjE5nB6XuN2Kr16JJjZiUB7vLzkGrRFZmzTXrj98nPf/DqPyvNASfdn4X4lXHxIspVPFrmo9YXfXVhjUCp1j/UW9uo1NABXMimhzJSB4yBY7zmN9alUHqgaraJKcKDQGreouGiPKReWqLpwYCMTGpi2MS3PNhwRL9XI7TrVlGv052QoyBKElxzqjkdI3ZJP1GQULu7bk6tWAiomtMI/xEafkGDTXMDamzdub7isn+Wk/bC8TUFWxluaapwRL5lSsHJctnfqoaAUZqwZVrFiCx+8fxrgogbGfPoidPIhBx21Z5ZWFxqA5y6XJcn7NlX3V5H5Fll7viY1Rq9wW4upTgiVzKv4czqpNUp5QrSA9/EZaxbq9fknJueS+PGy1pp+HDVXyeci2pjfHjxMoOQY9abEwWT6dv7gjm9wvytPrbapEd75AfEqwJI8HHVa1vTqBRG/FCjIEo7ljnZVdWsUKwsTKd1afEq8fGIgmDo/q1cBMIR8xqCx3LDQGjZBUsUI1qY9y83mcgCrRnS8QHwmWzKmoXh23eoIrS17JK2Xb+jG4BNiL6GI++D2F8rAdMcjTIuW25eErSu1U40Q1qStZNN22KNGfMnskWNODnts4lSfN+LZUlSKPoKSSbaSmmsDH9kv+HHRXVIdM6cIrRMSgsjxTNc49YpCMlGIylwnbR8OqRH86zzwSLIlz4lRFeqrEsZwmb4lsdyv0XMWSjO87Vy+bSWQkBhGDThBQLUS8xsgJVbh0h0CKhdcjwVK8f4VT7Vi4sdPTzP2qaqrV7SiPh4xjW7V8qiaNQX/P6pVTkj61CzFoSqP97VLHd4rJvH3rCjQULMCmC8UhwVI5JU4lcAiHJtVJTKyIqm8amVw9VrGmAz7WNvP7vRIYYtCcbNv7pcYgyVgRTOJte0c67bzi15PEk4XiewXr6QqHHZzKAaKuCYVjuQYnof8of2hTZ7FrLVdTvbqm3vZdQh/a7pizRwgUH4OOKHHgGoWeB7rlkgMEVEWgccE4JFiuE+NdKZzqgHW5ZJWAsoqleBy+qkjmE4qxParkOcYVcnrKN+rMZ+MEJtUHL01Vk7iXfN23I1yI6SpY3VutbACSQe8dnISO30MVq+vqVdnDD+kCgdJi0Fh1cDWOMIa5ytlxY4qF2Lhg/J5geU+MqsHTsRNIVBcMfs8gRRUrzurjII9rZflu96BEDFoG3frRwmNQLH73cRIrEPcnJfDqOSE+JBcMmkfbbLgRqGHwK3/9uOUqVk3VK2KQ25CurqEaYlB1UBH4FAFJJfUugeQRIYPmlH25eIOA0vlbfherqurVhv2vniIGXSXX732KMSONX/2ayl9z76LQvSIvSbD8tafFWggoghRVrHPWr6l6dU4zrobAPgFFDNrvlStqJqBYkFkcfsUZa3aLONlrWV1J5QwrDckjqjjTRN2tHNOKQKSUNwokN8sJSMf2Wem93wP0roqc1YfrsxOQVLCKGjTZERcuQCVBQFnFammCp3r1fbwRgwqPO1PxKolBU5HZhsARAv4JFoPlCPd2r/FeBd5JSSfMhqpYyl+ql36r03NEEIM8adbX1oUYpKhiK6q99RmjDolV84t/glUHT6S8E6gpCFDF2nZbxSTx6JGk5YGCDV8CNcUgX81prWUC9mSEBKtlCzemm2qVMWBqoIpF9aoxh0cdCEAgHQHBIpIEK535uulJWUmhirXsRkrmN0HgWdaCoxDwISAdDz4i0koHBF5b/i2gDuzXnYpUsZZNXnX16sI7M8sUOAoBCECgHAJUsMqxBZIcJEAV6xmUcrWuZP2sBXsQgAAEGiIQFo4kWA3ZsxdVhiqW6rFVhe9iKatX0ophLw6LnhCAQJcESLC6NHv9Siu/eVTT72JRvarfl9EAAhBok8ArL7C2adjWtaKK9d3CVK9a93T0gwAEaiVABatWyyH3rfcq1t8//vC7yg1490pFlnYhAIFeCJBg9WLpBvXsvool/PYd7141OGBQCQIQSEqABCspbjrzJtBrFYvqlbcn0V5LBFggtGTNenUhwarXdkgeCHRbxaJ6hf9DAAIQKJqAf4IlDPxFk0S4bASkVazb65dsiq10TPVqBQyHqyRQ07d2qwSM0NkI+CdYQRXlV8ezkaLjYglIq1iF+fMwtlSLmPDbYjxaKdbNEQwCEKiMwKty9V8ZC8StmIDSj5U/hXAWuXK1r2R4Vk+u74iA94JB9SPEHZkEVX0ISCpYPqLRCgSOE+ihikX16rg/cCUEIACB3AReFY8ElKvs3MDov1wCygpMCVUs5bhSsivXY5AsNwHF6yT4cm6r0v9IgArWSILP6gm0XMWielW9e6IABCDQGYHvCZb3M2vvZ+qdGQV1rxNQrl5zVrGoXl33Ce4sl4DSr8vVGsl6ISCrYClKv70YBT2vE1BXsZQ/kbCmNdWrNTIcr56AYDGueO2les4okIXAkGApVv2sTLLYk04DAYU/P8AKJoRH2ysbyrEkZbWiD4chYAQki3DvpzGYCgIRBGQVrFuGiSiCA7c2RKClKhbVq4YcE1WeCCgXDk8dsQOBTASGBEtVUpWsUDKBotu6CHz66+vPMokTLh6UkxDVK5mH0HAmAvh0JvB0u0jgvYIlKK0qJ4dFbTgIgSkBgU+Pzad4F4vq1Uibz9YISH27NVjoUy2BR4IlyfwTrvSrtQCCywjUXsVSLlAk411mSRpujYDKt1VPY1rjjz5pCDwSLFV3PCZUkaXdIwTebt9+OXLdlWuUVSzpCj9U9piIrlice9wIKBbfwoq1m9401BWBR4KlCriqlUpXVkLZywRUfj0IFCYJ1QJCOW6oXl12J250IKAaM/i1g3FowpXAI8EaWlWsAISTkCsJGmuWgLKKpUiEqF4164ooFggoxgxgIVAigacES7UCYECVaPp+ZKqtiqUcL6ox3o83oWkMAdnigcfeMWbhXhGBpwRLNhEpnreLgNBsmwRqqWLJJiAzK5NQm85dkVaqxQMLh4qcoCNRnxKsQW/FY8LQsPKF4I7shaoXCcgWDyaP42Nw1QRkYkq/VWkd8A8CGwSUiwfp+N7QiVMQ2CLwIcGSrQSoYm3ZgXMJCJRexVJOQFa9SoCYLiCwSkC2eMC3V5lzIi+BDwmWciVAFSuvsXvvXenbHlWsl9vrF5WNqF6pyNLuEQLKxYOsKHBEMa6BwAaBDwnWcK1qReD4KGVDJ05BYJVAqVWsYQJalTryhGo8R4rF7f0QUC4epAunfkyEpgICiwmWckUgKxML4NBkewSGYKxKOCIWEMoJiOpVe35ck0bSJxeqsVwTYGQtlsBiglXqJFQsRQSrikBpCwhl9UpZsavK6AibhYDy0aApxOIhi1np9CCBxQTL7pVOQuFdE+WkclB3LuuUQGkLCGX1iscnnTp5IWpLn1hQvSrEyoixRmA1wZJOQkEa6cBb05bjELgTkC4g3m6fj4JWLjSoXh21AtcpCAyPBoXfHleOYQUP2uyPwGqCZSikDhwGnvTZfH+2ROMTBKQLiBPvYlG9OmE0Lq2GgPrRID+aW40rdC3oZoIlnYQM+4mJqGsrobyEgHIBcaRCS/VKYlYaLYCAcuFg6inHbgH4EKERApsJlumodmQbiMqJphE7oYaAgHQBcWDxoJyEBt0EzGgSAnsE5E8mwrtX+PeeFThfAoHdBEs6Cd0J2GqfJKsEd+hPBuUCYquKpZyEePeqPz8uRWP1e1emp3LMlsIROdogsJtgmZpyhw6r/a3JqA3UaFEiAekCYquKFc6peLC6V5Gl3S0CKZIr3r3asgDnSiNwKMGSTkIjkTDhKFf1Yzd8QmBOQLmAWHoMqPRzqldz67KfgkCS5Coowu9epbAmfXgROJRgWWdJHJsky8uutHOCgHoB8eHxt6p6xbspJ6zOpV4EUiVXLB68LEY7qQgcTrBMoCQOTpKVyvb0MyGQqoolrV693H6dqMQmBOQEUiVXPBqUm5IOBAROJVjqlf5DP0uyfvrX24eV/+MCNiDgS0Dt2+bLgz9TvfI1HK1lI5AsuQoaKhdA2QDScfMETiVYRiOlo/MTDs37X1EKKn3bfFn5RQ6l7EUZCWGyE7CFQtLk6vbtl2EBlF1zBIDAOQKnEyxz9CSPCu962MSkfKxyDhdXt0xAXcWyH9aV8OPdKwlWGv1IwJKr4YsbKl+ed4lvz4mwXxGB0wmW6SafiOYA7ZHhjz/8PjximZ9jHwKOBJJ8mcNRXmuK6pUzUJpbJGAxeEiuFs9qDtY4HjUkaLVGApcSLFM0ueOHJMsGN0lWjW5Wmcxh1VyNxKzwqzFVrYKmfiQ4ckr5pGTsk08IeBK4nGCZEDkGwPjIkETL0w1oa0og+eJh2vnJbapXJ4Fx+SkCj6pVqkeCo3QsHEYSfFZMICrBSv0+1oMz1awHCjZEBGqoYjEJiYxPs0PVKnyTW/be4Bbi4Nc1LXK2VOFc3wSiEixDl/x9rIm9qGZNYLDpSqCGAE/1ytXkNBYIjI8DU79rNYVfw9ibyss2BNYIRCdY1vAwIHKt+O/VLH43a83EHL9MIJdPHxGY6tURSlxzkMBTYpX6ceBExhyvnUy6ZxMCrgRcEiyTKGuSdUcyVLT4gVJXB+m5sZJX0lSvevZMP91LSaxMI0uuhicifurREgSyEnBLsEyLEpIsk2NMtPhpB6PBvxgCRa6oqV7FmLT7e8ekyqr+w6PAjBWr0RgkVyMJPlsi8H/eytjK+uV2++Ld7qX2hseHN/uh0j/GFT8rpEsku73J/CVMREXpP/pyUUIhTNEELKkyAb//NYHwg7chSJfyj+SqFEsghzcB9wTLJqQwmH/J+ZLkB0j3RMuOD5NlqACMkxQJ1wdaHJgRsAmgGH+26tVfX3+bicguBJ4IPCVU0wpVQYmVCUxy9WQ2dhoj4J5gGZ9HkvV2+5zla757RponXHZ9mLiGj1CB27s913mSwTzkjXspVaxxYZCHBL2OiUtpJB5/53KaTJmQhSVUU24kV1MabLdIQJJgGah7MvCbvQdVZJI1t+Y9MBXzeHMuX9gfq292yiZaEq4FSKJDRVSxqF6JrLverCVUQ/IyT1zWb8lzpuBEagkIydUSFY61RsD1JfclOKW8+L4kW5XHLNCH/8OL/Ja88i8JgRKS2ZK/1ZjECAk7scQqLGjCOub1SxULxIRsorqy1zP4tmAUQm6uh4A8wTIUJFkihwiJ1lAhFDVPs88EbGJ4PpJw7/4IO2GP3XZlY6qYd+5askLwYZsLSlistIQVXcolkCTBMvVtYGWdoMq1QZxkJFlx/E7cPUwMmRIdqlcnDBVx6fCOlVWJ+edL4J5c+TZKaxAom0CyBMsw2ARFkiVwCJIsAdTlJrO8ZJ4pqVsm0O7R4X0reyTIP1cCFvNZILgipbFKCCRNsIyJJVmf/vznZfzWXiWcyheTVXcSG+WoYjE5JTHt/Tei0vTVSy+WXA1jpheF0RMCEwLJE6yx72HSYGU+4nD55H0sF4y7jaSsYlHx3TWHywU8GnTB+N6IPRIMC2mSq3ckbPVHIFuCZagtyWIC6c/patc4ZRWLCap2b+lQft636tDoqLxEIGuCZQLZBMIjwyXTXDjGY8IL0K7dkqKKxeLjmm2u3PX4oc4rN3PPdwIhsTKf5ZE2DgGB7wSyJ1ijIahmjSTiPodHHXFNcPcBAimqWFSvDhiCS4ogMCZW+GwR5kCIQggUk2AZD6pZhXgFYhwioKxiUb06ZAIuyk2Ad61WLUCyuYqmyBOKeF5UgjVSf1SzwuAdj/F5jMDZQX32+mNS9HHVwE7ko9ilDx+qVkseB1ZrOgRPRCCMkSITLFPfJhgSrXSO4NlTT8mBYtVD9crTG2nLlcAksWppnLvrIlp4udqSxuQEik2wRs3HRMtehGfiGamsfJYwqEuQYQWP4vAQmD11Dm25B3uF4o21qUiUm0IU/LL596w8x3FTxu9DGe+4azGl+ARratoh2RoTLQbDFM2wfXWSuHrfBwHCAc+2ltov8Zinzp5tlciqVJm8g2upep6Sa0yqQsy1pwmtM/Ice55tnbIZF8cRcMwrbLy8xEmT9+7xG3P8YdZgh+AYFgSvWmT4kdLYn3mIlOGq7CXcB7/rVvj7p3+9Xb974c6LfsifyrmzDPwsQWg9oVrwnJuLL170vyV5OJaegIcPWLXXxk9VFaw5alPA/j8eHwbHnl/Ty35McmWMYu+3NnpetQ38Iv2vZ37mP7n/DQlFpA1z63C5/6D38Aiwk2rVGqfo11ACR49YuiYfx/UEPHxgiCVB1KoTrCnqIdEKFZynZKuTYBntEHeQMe3YvaNTTe3S0/aQIF30OfiV4SkeiXIZmuxIYX4a/pvfWcw0vXsfv0bMGETFwVD52yHP6cIJRPlAGFPTBLvqR4RH7PR4jPh2+3yLfQR2pMOU18yM6dX1qcddFqQ7fZywxvssv+mAXGuz5eMeJfknPg7j4pQNnzoveOc+Vk1CkqltOw2Pi8/MGQ4+ty0RZ1MTOP3KwIIPNJ9gLRllTLrs3ONPZNSUfN0DpTJI7gaYBDIs2a6WY/A7bqkSEyyTfteGx1VMd2UYl9bZ9HGzMk6kUyxPT4MP3F6/rPZOHFxF08qJ3cXWhg90mWDtGd4G1d41uc7nCJZLPHLIkYt5bL9zfrB7JlpqgjWVcm7D6bnc2/iT3gJL9oe7nntJPVzxARKskiyILBDokEANCVaHZkFlCEAgkkAzL7lHcuB2CEAAAhCAAAQg4EaABMsNJQ1BAAIQgAAEIACB7wRIsPAECEAAAhCAAAQg4EyABMsZKM1BAAIQgAAEIAABEix8AAIQgAAEIAABCDgTIMFyBkpzEIAABCAAAQhAgAQLH4AABCAAAQhAAALOBEiwnIHSHAQgAAEIQAACECDBwgcgAAEIQAACEICAMwESLGegNAcBCEAAAhCAAARIsPABCEAAAhCAAAQg4EyABMsZKM1BAAIQgAAEIAABEix8AAIQgAAEIAABCDgTIMFyBkpzEIAABCAAAQhAgAQLH4AABCAAAQhAAALOBEiwnIHSHAQgAAEIQAACECDBwgcgAAEIQAACEICAMwESLGegNAcBCEAAAhCAAARIsPABCEAAAhCAAAQg4EyABMsZKM1BAAIQgAAEIAABEix8AAIQgAAEIAABCDgTIMFyBkpzEIAABCAAAQhAgAQLH4AABCAAAQhAAALOBEiwnIHSHAQgAAEIQAACECDBwgcgAAEIQAACEICAMwESLGegNAcBCEAAAhCAAARIsPABCEAAAhCAAAQg4EyABMsZKM1BAAIQgAAEIAABEix8AAIQgAAEIAABCDgTIMFyBkpzEIAABCAAAQhAgAQLH4AABCAAAQhAAALOBEiwnIHSHAQgAAEIQAACECDBwgcgAAEIQAACEICAMwESLGegNAcBCEAAAhCAAARIsPABCEAAAhCAAAQg4EyABMsZKM1BAAIQgAAEIAABEix8AAIQgAAEIAABCDgTIMFyBkpzEIAABCAAAQhAgAQLH4AABCAAAQhAAALOBEiwnIHSHAQgAAEIQAACECDBwgcgAAEIQAACEICAMwESLGegNAcBCEAAAhCAAARIsPABCEAAAhCAAAQg4EyABMsZKM1BAAIQgAAEIAABEix8AAIQgAAEIAABCDgTIMFyBkpzEIAABCAAAQhAgAQLH4AABJoi8PZy+7UphVAGAhCokgAJVpVmQ2gINETg7dsfDWmDKhCAAAQGAiRYOAIEIAABCEAAAhBwJkCC5QyU5iAAgXMEXB/phWrYv//8+ts5CbgaAhCAgD8BEix/prQIAQicIOCZELkmayd04FIIQAACcwIkWHMi7EMAAskJvN2+/RLdKdWraIQ0AAEI+BEgwfJjSUsQgMBFAkMVK/Jld6pXF+FzGwQgICHwImmVRiEAAQhcIPD3jz/8fnt5/c/ZW60C5vmo8Wz/XA8BCEBgToAEa06EfQhAICuB//30w39fbq9fDgkRql6f/vr686FruQgCEIBAQgI8IkwIm64gAIF9AlaJ+vTnPy/De1lrjw3DcTtPcrXPkysgAAEIQAACEIDAIgGratn/xZMchAAEIFAggf8HXPwWwVViVVEAAAAASUVORK5CYII=' };
+  </script>
+  <script type="text/babel">
+  // === data.jsx ===
+// AVPN mock data + Icon helper (lucide UMD wrapper)
+
+// ── Icon: render a lucide icon node by name ──────────────────
+function Icon({ name, size = 18, stroke = 'currentColor', strokeWidth = 1.75, className = '', style = {} }) {
+  const children = window.lucide?.icons?.[name];
+  if (!Array.isArray(children)) return null;
+  return React.createElement(
+    'svg',
+    {
+      xmlns: 'http://www.w3.org/2000/svg',
+      width: size,
+      height: size,
+      viewBox: '0 0 24 24',
+      fill: 'none',
+      stroke,
+      strokeWidth,
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      className,
+      style,
+    },
+    children.map(([t, a], i) => React.createElement(t, { key: i, ...a }))
+  );
+}
+
+// ── SDG palette (UN official-ish color codes) ────────────────
+const SDG = {
+  1:  { c: '#E5243B', label: 'No Poverty' },
+  2:  { c: '#DDA63A', label: 'Zero Hunger' },
+  3:  { c: '#4C9F38', label: 'Good Health' },
+  4:  { c: '#C5192D', label: 'Quality Education' },
+  5:  { c: '#FF3A21', label: 'Gender Equality' },
+  6:  { c: '#26BDE2', label: 'Clean Water' },
+  7:  { c: '#FCC30B', label: 'Affordable Energy' },
+  8:  { c: '#A21942', label: 'Decent Work' },
+  9:  { c: '#FD6925', label: 'Innovation' },
+  10: { c: '#DD1367', label: 'Reduced Inequalities' },
+  11: { c: '#FD9D24', label: 'Sustainable Cities' },
+  12: { c: '#BF8B2E', label: 'Responsible Consumption' },
+  13: { c: '#3F7E44', label: 'Climate Action' },
+  14: { c: '#0A97D9', label: 'Life Below Water' },
+  15: { c: '#56C02B', label: 'Life on Land' },
+  16: { c: '#00689D', label: 'Peace & Justice' },
+  17: { c: '#19486A', label: 'Partnerships' },
+};
+
+// ── Members (Organization + Individual rep) ──────────────────
+const MEMBERS = [
+  {
+    org: 'Tanoto Foundation',
+    orgPhoto: 'https://logo.clearbit.com/tanotofoundation.org',
+    type: 'Private Foundation',
+    market: 'Indonesia',
+    rep: 'Belinda Tanoto',
+    role: 'Trustee, Strategic Partnerships',
+    sdgs: [4, 3, 17],
+    aum: '$420M',
+    initials: 'TF',
+    accent: '#9F1810',
+    online: true,
+    tag: 'Verified',
+    repPhoto: 'https://randomuser.me/api/portraits/women/44.jpg',
+  },
+  {
+    org: 'Tata Trusts',
+    orgPhoto: 'https://logo.clearbit.com/tatatrusts.org',
+    type: 'Private Foundation',
+    market: 'India',
+    rep: 'Aparna Uppaluri',
+    role: 'Chief Operating Officer',
+    sdgs: [1, 8, 11],
+    aum: '$1.2B+',
+    initials: 'TT',
+    accent: '#7A1E1E',
+    online: false,
+    tag: 'Verified',
+    repPhoto: 'https://randomuser.me/api/portraits/women/65.jpg',
+  },
+  {
+    org: 'Nippon Foundation',
+    orgPhoto: 'https://logo.clearbit.com/nippon-foundation.or.jp',
+    type: 'Private Foundation',
+    market: 'Japan',
+    rep: 'Sayako Hashimoto',
+    role: 'Director, Asia Programs',
+    sdgs: [14, 3, 13],
+    aum: '$3.6B',
+    initials: 'NF',
+    accent: '#B82C2C',
+    online: true,
+    tag: 'Premier',
+    repPhoto: 'https://randomuser.me/api/portraits/women/76.jpg',
+  },
+  {
+    org: 'Lien Foundation',
+    orgPhoto: 'https://logo.clearbit.com/lienfoundation.org',
+    type: 'Family Office',
+    market: 'Singapore',
+    rep: 'Wei Ming Tan',
+    role: 'CEO',
+    sdgs: [3, 4, 10],
+    aum: '$180M',
+    initials: 'LF',
+    accent: '#1F4F8B',
+    online: true,
+    tag: 'Verified',
+    repPhoto: 'https://randomuser.me/api/portraits/men/67.jpg',
+  },
+  {
+    org: 'DBS Foundation',
+    orgPhoto: 'https://logo.clearbit.com/dbs.com',
+    type: 'Corporate CSR',
+    market: 'Singapore',
+    rep: 'Karen Ngui',
+    role: 'Head, Group Strategic Marketing & Communications',
+    sdgs: [8, 1, 13],
+    aum: '$120M',
+    initials: 'DB',
+    accent: '#B71C2D',
+    online: false,
+    tag: 'Member',
+    repPhoto: 'https://randomuser.me/api/portraits/women/48.jpg',
+  },
+  {
+    org: 'Bopinc',
+    orgPhoto: 'https://logo.clearbit.com/bopinc.org',
+    type: 'Impact Intermediary',
+    market: 'Vietnam',
+    rep: 'Tran Minh Linh',
+    role: 'Regional Director',
+    sdgs: [1, 5, 8],
+    aum: '$25M deployed',
+    initials: 'BP',
+    accent: '#4C5A2F',
+    online: false,
+    tag: 'Member',
+    repPhoto: 'https://randomuser.me/api/portraits/men/77.jpg',
+  },
+  {
+    org: 'Convergence Finance',
+    orgPhoto: 'https://logo.clearbit.com/convergencefinance.org',
+    type: 'Blended Finance',
+    market: 'Philippines',
+    rep: 'Marc Reyes',
+    role: 'Director, APAC',
+    sdgs: [13, 6, 17],
+    aum: '$340M brokered',
+    initials: 'CF',
+    accent: '#0A3D62',
+    online: true,
+    tag: 'Premier',
+    repPhoto: 'https://randomuser.me/api/portraits/men/52.jpg',
+  },
+  {
+    org: 'ADB Ventures',
+    orgPhoto: 'https://logo.clearbit.com/adb.org',
+    type: 'Multilateral',
+    market: 'Regional',
+    rep: 'Daniel Hersson',
+    role: 'Investment Specialist',
+    sdgs: [7, 13, 9],
+    aum: '$60M Fund I',
+    initials: 'AV',
+    accent: '#1B5E7D',
+    online: true,
+    tag: 'Premier',
+    repPhoto: 'https://randomuser.me/api/portraits/men/41.jpg',
+  },
+];
+
+// ── Agenda sessions ──────────────────────────────────────────
+const SESSIONS = {
+  1: [
+    { time: '09:00', dur: '60 min', title: 'Opening Keynote: Asia\'s Capital Decade', speaker: 'Naina Subberwal Batra', org: 'AVPN CEO', track: 'Plenary', room: 'Grand Ballroom', seats: 12, saved: true },
+    { time: '10:30', dur: '75 min', title: 'Blended Finance for Climate Adaptation in SEA', speaker: 'Marc Reyes + 3 panelists', org: 'Convergence Finance', track: 'Climate', room: 'Hall B', seats: 48, saved: true },
+    { time: '12:15', dur: '60 min', title: 'Networking Lunch — Family Office Roundtable', speaker: 'Invite only', org: 'AVPN Curated', track: 'Networking', room: 'Pavilion', seats: 3, saved: false, badge: 'Curated' },
+    { time: '14:00', dur: '90 min', title: 'Deploying Catalytic Capital for Gender Lens Funds', speaker: 'Sayako Hashimoto', org: 'Nippon Foundation', track: 'Gender', room: 'Hall C', seats: 22, saved: false },
+    { time: '16:30', dur: '60 min', title: 'Deal Room: SE Asia Climate-Tech Pipeline', speaker: 'ADB Ventures', org: 'ADB Ventures', track: 'Deal Room', seats: 7, room: 'Investor Suite', saved: true, badge: 'Premier' },
+  ],
+  2: [
+    { time: '09:00', dur: '60 min', title: 'Day 2 Keynote: AI for Public Good in Asia', speaker: 'Dr. Aparna Uppaluri', org: 'Tata Trusts', track: 'Plenary', room: 'Grand Ballroom', seats: 88, saved: false },
+    { time: '11:00', dur: '60 min', title: 'Outcomes-Based Financing: Health Systems', speaker: 'Wei Ming Tan', org: 'Lien Foundation', track: 'Health', room: 'Hall A', seats: 33, saved: true },
+    { time: '13:30', dur: '90 min', title: 'Field Visit: Mangrove Restoration, East Coast', speaker: 'Guided tour', org: 'AVPN x Nippon', track: 'Field Visit', room: 'Lobby — Bus 3', seats: 5, saved: false, badge: 'Off-site' },
+    { time: '15:30', dur: '60 min', title: 'Family Office Masterclass: Next-Gen Givers', speaker: 'Belinda Tanoto', org: 'Tanoto Foundation', track: 'Family Office', room: 'Hall C', seats: 18, saved: true },
+  ],
+  3: [
+    { time: '09:30', dur: '45 min', title: 'Closing Plenary: Commitments Wall', speaker: 'AVPN Team', org: 'AVPN', track: 'Plenary', room: 'Grand Ballroom', seats: 140, saved: false },
+    { time: '11:00', dur: '90 min', title: 'Working Group: SDG 13 Action Coalition', speaker: 'Open', org: 'Coalition', track: 'Climate', room: 'Hall B', seats: 26, saved: true },
+    { time: '14:00', dur: '60 min', title: 'Mentor Hour — Emerging Fund Managers', speaker: '12 mentors', org: 'AVPN', track: 'Capacity', room: 'Pavilion', seats: 9, saved: false, badge: 'Curated' },
+  ],
+};
+
+// ── Networking: warm intros + direct ─────────────────────────
+const INTROS = [
+  {
+    name: 'Anand Mahindra Foundation',
+    requested: 'Apr 28',
+    reason: 'Co-fund pipeline for climate-tech in Maharashtra',
+    stage: 1, // 0 Reviewing, 1 Outreach, 2 Connected
+    broker: 'Priya Nair · AVPN Mumbai',
+  },
+  {
+    name: 'Patamar Capital — Beau Seil',
+    requested: 'Apr 30',
+    reason: 'LP discussion for SDG 5 vehicle',
+    stage: 0,
+    broker: 'Awaiting assignment',
+  },
+  {
+    name: 'MUFG Innovation Partners',
+    requested: 'Apr 12',
+    reason: 'Strategic CSR aligned to SDG 7',
+    stage: 2,
+    broker: 'Kenji Saito · AVPN Tokyo',
+  },
+];
+
+const DIRECT_CHATS = [
+  { name: 'Sayako Hashimoto', org: 'Nippon Foundation', preview: 'Happy to circle back after the panel — see you in Hall C', time: '08:42', unread: 2, initials: 'SH', accent: '#B82C2C', photo: 'https://randomuser.me/api/portraits/women/76.jpg' },
+  { name: 'Marc Reyes', org: 'Convergence Finance', preview: 'Sharing the blended-finance term sheet now', time: 'Yesterday', unread: 0, initials: 'MR', accent: '#0A3D62', photo: 'https://randomuser.me/api/portraits/men/52.jpg' },
+  { name: 'Belinda Tanoto', org: 'Tanoto Foundation', preview: 'Connection accepted', time: 'Mon', unread: 0, initials: 'BT', accent: '#9F1810', photo: 'https://randomuser.me/api/portraits/women/44.jpg' },
+];
+
+Object.assign(window, { Icon, SDG, MEMBERS, SESSIONS, INTROS, DIRECT_CHATS });
+
+  // === screens.jsx ===
+// AVPN App screens — Home, Directory, Agenda, Networking, QR
+
+const C = {
+  bg: '#FAF6F4', // warm off-white
+  card: '#FFFFFF',
+  ink: '#1A0E0C', // near-black emerald
+  ink2: '#5C4541',
+  ink3: '#9F8783',
+  line: '#EFE5E2',
+  primary: '#E2231A', // deep emerald
+  primarySoft: '#FDE9E7',
+  primaryDeep: '#9F1810',
+  gold: '#7A1612',
+  goldSoft: '#FBE5E2',
+  amber: '#C9201A',
+  warn: '#C25C2C'
+};
+
+// ───────── shared atoms ───────────────────────────────────────
+function Avatar({ initials, accent = '#0F5F4D', size = 40, online = false, ring = false, src, logoMode = false }) {
+  const [imgErr, setImgErr] = React.useState(false);
+  const showImg = src && !imgErr;
+  return (
+    <div className="relative flex-shrink-0" style={{ width: size, height: size }}>
+      <div
+        className="w-full h-full rounded-full flex items-center justify-center text-white font-medium overflow-hidden"
+        style={{
+          background: showImg && logoMode ? '#FFFFFF' : `linear-gradient(135deg, ${accent} 0%, ${accent}cc 100%)`,
+          fontSize: size * 0.36,
+          letterSpacing: '0.02em',
+          boxShadow: ring ? `0 0 0 2px ${C.gold}` : 'none',
+          padding: showImg && logoMode ? Math.round(size * 0.12) : 0,
+        }}>
+        {showImg
+          ? <img src={src} alt={initials} onError={() => setImgErr(true)}
+              style={{ width: '100%', height: '100%', objectFit: logoMode ? 'contain' : 'cover', borderRadius: logoMode ? 0 : '50%' }} />
+          : initials
+        }
+      </div>
+      {online &&
+      <div
+        className="absolute bottom-0 right-0 rounded-full"
+        style={{
+          width: size * 0.28,
+          height: size * 0.28,
+          background: '#2BB673',
+          boxShadow: `0 0 0 2px ${C.card}`
+        }} />
+
+      }
+    </div>);
+
+}
+
+function SDGBadge({ n, size = 22 }) {
+  const sdg = SDG[n];
+  if (!sdg) return null;
+  return (
+    <div
+      className="rounded-md flex items-center justify-center text-white font-bold"
+      style={{ background: sdg.c, width: size, height: size, fontSize: size * 0.48, lineHeight: 1 }}
+      title={`SDG ${n}: ${sdg.label}`}>
+      
+      {n}
+    </div>);
+
+}
+
+function Pill({ children, tone = 'neutral', className = '' }) {
+  const tones = {
+    neutral: { bg: '#F4ECEA', fg: C.ink2, bd: C.line },
+    primary: { bg: C.primarySoft, fg: C.primaryDeep, bd: '#F4B5AE' },
+    gold: { bg: C.goldSoft, fg: '#9F1810', bd: '#F2C8C3' },
+    warn: { bg: '#FBE7DA', fg: '#7B3A18', bd: '#F2CDB0' },
+    success: { bg: '#DEF1E5', fg: '#1A5A3B', bd: '#BFE0CD' },
+    dark: { bg: C.ink, fg: '#fff', bd: C.ink }
+  }[tone];
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide ${className}`}
+      style={{ background: tones.bg, color: tones.fg, border: `1px solid ${tones.bd}` }}>
+      
+      {children}
+    </span>);
+
+}
+
+function SectionHeader({ title, action, kicker }) {
+  return (
+    <div className="flex items-end justify-between mb-3 px-5">
+      <div>
+        {kicker && <div className="text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: C.gold }}>{kicker}</div>}
+        <div className="text-[17px] font-semibold mt-0.5" style={{ color: C.ink, letterSpacing: '-0.01em' }}>{title}</div>
+      </div>
+      {action &&
+      <button className="text-[12px] font-medium flex items-center gap-0.5" style={{ color: C.primary }}>
+          {action} <Icon name="ChevronRight" size={14} />
+        </button>
+      }
+    </div>);
+
+}
+
+// ═════════ HOME — YEAR-ROUND MODE ═════════════════════════════
+function HomeYearRound({ openQR, goDirectory, goNetworking }) {
+  const sdgs = [
+  { n: 13, growth: '+12%', deals: 84 },
+  { n: 5, growth: '+8%', deals: 56 },
+  { n: 4, growth: '+5%', deals: 71 },
+  { n: 3, growth: '+3%', deals: 49 }];
+
+  const newOrgs = MEMBERS.slice(2, 6);
+
+  return (
+    <div className="pb-28">
+      {/* Hero banner */}
+      <div className="px-5 pt-3">
+        <div
+          className="rounded-2xl p-5 relative overflow-hidden"
+          style={{
+            background: `url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&fit=crop&q=80') center/cover no-repeat`,
+            color: 'white',
+            minHeight: 168
+          }}>
+
+          {/* dark gradient overlay so text stays readable */}
+          <div className="absolute inset-0 rounded-2xl" style={{
+            background: `linear-gradient(135deg, rgba(10,30,80,0.92) 0%, rgba(20,70,160,0.82) 55%, rgba(30,100,200,0.70) 100%)`
+          }} />
+
+          {/* decorative grain */}
+          <div className="absolute inset-0 opacity-[0.06]" style={{
+            backgroundImage: 'radial-gradient(circle at 20% 30%, white 1px, transparent 1px), radial-gradient(circle at 70% 80%, white 1px, transparent 1px)',
+            backgroundSize: '24px 24px, 36px 36px'
+          }} />
+          <div className="relative">
+            <div className="flex items-center gap-1.5 mb-3">
+              <Icon name="Sparkles" size={13} stroke="rgb(255, 255, 255)" />
+              <span className="text-[10px] uppercase tracking-[0.18em] font-semibold" style={{ ...{ color: C.gold }, color: "rgb(255, 255, 255)" }}>
+                For You — Belinda
+              </span>
+            </div>
+            <div className="text-[20px] font-semibold leading-tight" style={{ letterSpacing: '-0.015em' }}>
+              3 new co-investment leads<br />match your climate thesis.
+            </div>
+            <div className="text-[12px] mt-1.5 text-white/70">Aligned with SDG 13 · SEA region · $500K–$5M ticket</div>
+
+            <div className="mt-4 flex gap-2">
+              <button onClick={goDirectory} className="px-3 py-1.5 rounded-full text-[12px] font-medium" style={{ background: 'white', color: C.primaryDeep }}>
+                Review matches
+              </button>
+              <button className="px-3 py-1.5 rounded-full text-[12px] font-medium border border-white/30 text-white/90">
+                Tune thesis
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trending SDGs */}
+      <div className="mt-7">
+        <SectionHeader kicker="Asia Capital Flows" title="Trending SDGs · Q2 2026" action="View map" />
+        <div className="grid grid-cols-2 gap-2 px-5">
+          {sdgs.map((s) =>
+          <div key={s.n} className="rounded-xl p-3" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+              <div className="flex items-center justify-between">
+                <SDGBadge n={s.n} size={28} />
+                <div className="flex items-center gap-0.5 text-[11px] font-semibold" style={{ color: '#1A5A3B' }}>
+                  <Icon name="TrendingUp" size={12} /> {s.growth}
+                </div>
+              </div>
+              <div className="mt-2 text-[12px] font-medium" style={{ color: C.ink }}>{SDG[s.n].label}</div>
+              <div className="text-[11px]" style={{ color: C.ink3 }}>{s.deals} active deals</div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Quick actions */}
+      <div className="mt-7">
+        <SectionHeader kicker="Quick Actions" title="Discover & connect" />
+        <div className="px-5 grid grid-cols-1 gap-2">
+          {[
+          { ic: 'Handshake', t: 'Find Co-Investment Partners', s: '42 funds aligned to your thesis', tone: 'primary' },
+          { ic: 'Building2', t: 'Browse New Foundations', s: '7 joined in the last 14 days', tone: 'neutral' },
+          { ic: 'FileSearch', t: 'Open Calls for Capital', s: '18 funds raising in APAC now', tone: 'gold' }].
+          map((a) =>
+          <button key={a.t} onClick={goDirectory} className="flex items-center gap-3 p-3 rounded-xl text-left w-full"
+          style={{ background: C.card, border: `1px solid ${C.line}` }}>
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: a.tone === 'primary' ? C.primarySoft : a.tone === 'gold' ? C.goldSoft : '#F4ECEA' }}>
+                <Icon name={a.ic} size={17} stroke={a.tone === 'primary' ? C.primary : a.tone === 'gold' ? C.gold : C.ink2} />
+              </div>
+              <div className="flex-1">
+                <div className="text-[13px] font-medium" style={{ color: C.ink }}>{a.t}</div>
+                <div className="text-[11px]" style={{ color: C.ink3 }}>{a.s}</div>
+              </div>
+              <Icon name="ChevronRight" size={16} stroke={C.ink3} />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* New orgs carousel */}
+      <div className="mt-7">
+        <SectionHeader kicker="Joined this week" title="New foundations on the network" action="See all" />
+        <div className="flex gap-3 overflow-x-auto px-5 pb-2" style={{ scrollbarWidth: 'none' }}>
+          {newOrgs.map((m) =>
+          <div key={m.org} className="flex-shrink-0 rounded-xl p-3 w-[180px]"
+          style={{ background: C.card, border: `1px solid ${C.line}` }}>
+              <Avatar initials={m.initials} accent={m.accent} size={42} />
+              <div className="mt-2 text-[12.5px] font-semibold leading-tight" style={{ color: C.ink }}>{m.org}</div>
+              <div className="text-[11px]" style={{ color: C.ink3 }}>{m.type} · {m.market}</div>
+              <div className="flex gap-1 mt-2">{m.sdgs.slice(0, 3).map((n) => <SDGBadge key={n} n={n} size={18} />)}</div>
+              <button className="mt-2.5 w-full py-1.5 rounded-md text-[11px] font-medium border" style={{ borderColor: C.line, color: C.primary }}>
+                + Connect
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Coalition feed */}
+      <div className="mt-7">
+        <SectionHeader kicker="Member Feed" title="From the network" />
+        <div className="px-5 space-y-2">
+          <FeedPost
+            who="SDG 13 Action Coalition"
+            time="2h ago · 12 members"
+            text="Convening on adaptation finance for SEA archipelagic states. Seeking 2 anchor LPs."
+            cta="Join the room" />
+          
+          <FeedPost
+            who="Nippon Foundation"
+            time="Yesterday"
+            text="Published 2026 grant call: $40M for ocean restoration partners across Indonesia, PH, Vietnam."
+            cta="View RFP"
+            accent={C.gold} />
+          
+        </div>
+      </div>
+    </div>);
+
+}
+
+function FeedPost({ who, time, text, cta, accent = C.primary }) {
+  return (
+    <div className="rounded-xl p-3.5" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+      <div className="flex items-center gap-2">
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: accent }} />
+        <div className="text-[12.5px] font-semibold" style={{ color: C.ink }}>{who}</div>
+        <div className="text-[10.5px]" style={{ color: C.ink3 }}>· {time}</div>
+      </div>
+      <div className="mt-1.5 text-[12.5px] leading-relaxed" style={{ color: C.ink2 }}>{text}</div>
+      <button className="mt-2 text-[11.5px] font-medium" style={{ color: accent }}>{cta} →</button>
+    </div>);
+
+}
+
+// ═════════ HOME — ACTIVE EVENT MODE ═══════════════════════════
+function HomeEvent({ openQR, goAgenda, goNetworking }) {
+  const [t, setT] = React.useState({ h: 0, m: 24, s: 13 });
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      setT((prev) => {
+        let s = prev.s - 1,m = prev.m,h = prev.h;
+        if (s < 0) {s = 59;m -= 1;}
+        if (m < 0) {m = 59;h -= 1;}
+        if (h < 0) return { h: 0, m: 24, s: 13 };
+        return { h, m, s };
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  const pad = (n) => String(n).padStart(2, '0');
+
+  return (
+    <div className="pb-28">
+      {/* LIVE banner */}
+      <div className="px-5 pt-3">
+        <div className="rounded-2xl overflow-hidden relative" style={{
+            background: `url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&fit=crop&q=80') center/cover no-repeat`,
+            color: 'white'
+          }}>
+          {/* overlay */}
+          <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, rgba(45,10,80,0.92) 0%, rgba(90,30,150,0.82) 60%, rgba(130,60,200,0.70) 100%)` }} />
+          <div className="relative z-10">
+          <div className="px-4 py-3 flex items-center gap-2.5" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="relative w-2 h-2 rounded-full bg-white">
+              <div className="absolute inset-0 rounded-full bg-white animate-ping" />
+            </div>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em]">Live now</div>
+            <div className="ml-auto text-[10px] text-white/50">2,481 watching</div>
+          </div>
+          <div className="px-4 py-3.5">
+            <div className="text-[10px] uppercase tracking-[0.16em]" style={{ color: 'rgba(255,255,255,0.75)' }}>Plenary · Grand Ballroom</div>
+            <div className="mt-1 text-[15.5px] font-semibold leading-snug">
+              Asia's Capital Decade — Naina Subberwal Batra
+            </div>
+            <div className="flex gap-2 mt-3">
+              <button className="px-3 py-1.5 rounded-full text-[12px] font-medium" style={{ background: '#FFFFFF', color: C.primaryDeep }}>
+                <Icon name="PlayCircle" size={13} className="inline mr-1 -mt-0.5" /> Join stream
+              </button>
+              <button className="px-3 py-1.5 rounded-full text-[12px] font-medium border border-white/20 text-white">
+                Open transcript
+              </button>
+            </div>
+          </div>
+          </div>{/* end z-10 */}
+        </div>
+      </div>
+
+      {/* Countdown to next keynote */}
+      <div className="px-5 mt-5">
+        <div className="rounded-2xl p-4" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.16em] font-semibold" style={{ color: C.gold }}>Next keynote</div>
+              <div className="text-[13.5px] font-semibold mt-0.5" style={{ color: C.ink }}>Blended Finance for Climate Adaptation</div>
+              <div className="text-[11px] mt-0.5" style={{ color: C.ink3 }}>Hall B · Track: Climate</div>
+            </div>
+            <button onClick={goAgenda} className="text-[11px] font-medium px-2.5 py-1 rounded-md border" style={{ borderColor: C.line, color: C.primary }}>
+              Add to schedule
+            </button>
+          </div>
+          <div className="mt-3 flex gap-1.5">
+            {[['HRS', pad(t.h)], ['MIN', pad(t.m)], ['SEC', pad(t.s)]].map(([l, v]) =>
+            <div key={l} className="flex-1 text-center rounded-lg py-2" style={{ background: C.primarySoft, border: `1px solid #F4B5AE` }}>
+                <div className="text-[20px] font-semibold tabular-nums" style={{ color: C.primaryDeep, letterSpacing: '-0.02em' }}>{v}</div>
+                <div className="text-[9px] tracking-[0.18em]" style={{ color: C.primary }}>{l}</div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Quick tile grid */}
+      <div className="mt-6 px-5 grid grid-cols-2 gap-2">
+        <QuickTile ic="Map"    label="Venue Map"  sub="Grand Hyatt · 3 floors"   onClick={() => {}}     color={{ iconBg: '#E8F0FE', icon: '#1A56DB' }} />
+        <QuickTile ic="QrCode" label="My Pass"    sub="Lead exchange · tap"        tone="gold" onClick={openQR} />
+        <QuickTile ic="Users"  label="Who's here" sub="1,247 attending now"        onClick={goNetworking} color={{ iconBg: '#E6F4EA', icon: '#1E8A4A' }} />
+        <QuickTile ic="Coffee" label="Lounges"    sub="2 open · 1 invite-only"    onClick={() => {}}     color={{ iconBg: '#FFF3E0', icon: '#E07B00' }} />
+      </div>
+
+      {/* Sponsors */}
+      <div className="mt-7">
+        <SectionHeader kicker="Conference Partners" title="Anchor sponsors" />
+        <div className="px-5 grid grid-cols-3 gap-2">
+          {[
+          { i: 'TT', n: 'Tata Trusts', tier: 'Platinum' },
+          { i: 'DB', n: 'DBS', tier: 'Platinum' },
+          { i: 'NF', n: 'Nippon', tier: 'Gold' },
+          { i: 'LF', n: 'Lien', tier: 'Gold' },
+          { i: 'ADB', n: 'ADB', tier: 'Gold' },
+          { i: 'CF', n: 'Convergence', tier: 'Silver' }].
+          map((s) =>
+          <div key={s.n} className="rounded-xl p-3 flex flex-col items-center justify-center"
+          style={{ background: C.card, border: `1px solid ${C.line}`, aspectRatio: '1' }}>
+              <div className="text-[15px] font-bold tracking-tight" style={{ color: C.primary }}>{s.i}</div>
+              <div className="text-[10px] mt-0.5" style={{ color: C.ink3 }}>{s.n}</div>
+              <div className="text-[8.5px] mt-1 px-1.5 py-px rounded-full uppercase tracking-wider"
+            style={{ background: s.tier === 'Platinum' ? C.primary : s.tier === 'Gold' ? C.goldSoft : '#F4ECEA',
+              color: s.tier === 'Platinum' ? '#fff' : s.tier === 'Gold' ? '#9F1810' : C.ink2 }}>
+                {s.tier}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Today summary */}
+      <div className="mt-7 px-5">
+        <div className="rounded-2xl p-4" style={{ background: 'linear-gradient(135deg, #0A2463 0%, #1565C0 70%, #1E88E5 100%)', color: 'white' }}>
+          <div className="text-[10px] uppercase tracking-[0.16em]" style={{ color: 'rgba(255,255,255,0.75)' }}>Your day · Day 1</div>
+          <div className="grid grid-cols-3 gap-3 mt-3">
+            {[['4', 'Sessions'], ['9', 'Connections'], ['2', 'Warm intros']].map(([v, l]) =>
+            <div key={l}>
+                <div className="text-[24px] font-semibold leading-none" style={{ letterSpacing: '-0.02em' }}>{v}</div>
+                <div className="text-[10.5px] text-white/55 mt-1">{l}</div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>);
+
+}
+
+function QuickTile({ ic, label, sub, onClick, tone = 'neutral', color }) {
+  const isGold = tone === 'gold';
+  // color = { bg, icon, iconBg } for custom tiles
+  const iconBg  = isGold ? 'rgba(255,255,255,0.18)' : color ? color.iconBg : C.primarySoft;
+  const iconClr = isGold ? '#FFFFFF'                 : color ? color.icon  : C.primary;
+  return (
+    <button onClick={onClick} className="rounded-xl p-3 text-left flex flex-col gap-1.5"
+    style={{
+      background: isGold ? C.primary : C.card,
+      border: `1px solid ${isGold ? C.primary : C.line}`,
+      color: isGold ? '#fff' : C.ink
+    }}>
+      <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+      style={{ background: iconBg }}>
+        <Icon name={ic} size={16} stroke={iconClr} />
+      </div>
+      <div className="text-[13px] font-semibold leading-tight">{label}</div>
+      <div className="text-[10.5px]" style={{ color: isGold ? 'rgba(255,255,255,0.55)' : C.ink3 }}>{sub}</div>
+    </button>);
+
+}
+
+Object.assign(window, { C, Avatar, SDGBadge, Pill, SectionHeader, HomeYearRound, HomeEvent });
+  // === directory.jsx ===
+// Directory screen
+
+function Directory({ onOpenProfile }) {
+  const [query, setQuery] = React.useState('');
+  const [showFilters, setShowFilters] = React.useState(true);
+  const [markets, setMarkets] = React.useState(new Set());
+  const [sectors, setSectors] = React.useState(new Set());
+  const [sdgs, setSdgs] = React.useState(new Set());
+
+  const toggle = (set, setSet, v) => {
+    const n = new Set(set);
+    n.has(v) ? n.delete(v) : n.add(v);
+    setSet(n);
+  };
+
+  const allMarkets = ['Indonesia', 'India', 'Japan', 'Singapore', 'Vietnam', 'Philippines', 'Regional'];
+  const allSectors = ['Private Foundation', 'Family Office', 'Corporate CSR', 'Impact Intermediary', 'Blended Finance', 'Multilateral'];
+  const allSDGs = [5, 13, 4, 3, 8, 1, 17];
+
+  const filtered = MEMBERS.filter(m => {
+    if (query && !m.org.toLowerCase().includes(query.toLowerCase()) && !m.rep.toLowerCase().includes(query.toLowerCase())) return false;
+    if (markets.size && !markets.has(m.market)) return false;
+    if (sectors.size && !sectors.has(m.type)) return false;
+    if (sdgs.size && !m.sdgs.some(s => sdgs.has(s))) return false;
+    return true;
+  });
+
+  const activeCount = markets.size + sectors.size + sdgs.size;
+
+  return (
+    <div className="pb-28">
+      {/* Search bar */}
+      <div className="px-5 pt-3">
+        <div className="flex items-center gap-2 px-3 py-2 rounded-xl"
+             style={{ background: C.card, border: `1px solid ${C.line}` }}>
+          <Icon name="Search" size={16} stroke={C.ink3} />
+          <input
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search 2,400+ members & 8,900 individuals"
+            className="flex-1 text-[13px] bg-transparent outline-none placeholder:text-[#8A958F]"
+            style={{ color: C.ink }}
+          />
+          <button onClick={() => setShowFilters(!showFilters)}
+                  className="relative flex items-center gap-1 text-[12px] font-medium px-2 py-1 rounded-md"
+                  style={{ background: showFilters ? C.primary : C.primarySoft, color: showFilters ? '#fff' : C.primary }}>
+            <Icon name="SlidersHorizontal" size={13} /> Filter
+            {activeCount > 0 && (
+              <span className="ml-1 text-[10px] px-1.5 rounded-full"
+                    style={{ background: C.gold, color: '#FFFFFF' }}>{activeCount}</span>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {showFilters && (
+        <div className="mt-3 mx-5 rounded-xl p-3.5"
+             style={{ background: C.card, border: `1px solid ${C.line}` }}>
+          <FilterGroup label="Market Geography">
+            {allMarkets.map(m => (
+              <Chip key={m} active={markets.has(m)} onClick={() => toggle(markets, setMarkets, m)}>{m}</Chip>
+            ))}
+          </FilterGroup>
+          <FilterGroup label="Member Sector">
+            {allSectors.map(s => (
+              <Chip key={s} active={sectors.has(s)} onClick={() => toggle(sectors, setSectors, s)}>{s}</Chip>
+            ))}
+          </FilterGroup>
+          <FilterGroup label="UN SDG Goals" last>
+            {allSDGs.map(n => (
+              <button key={n} onClick={() => toggle(sdgs, setSdgs, n)}
+                      className="flex items-center gap-1.5 px-1.5 py-1 rounded-md transition"
+                      style={{
+                        background: sdgs.has(n) ? SDG[n].c + '22' : 'transparent',
+                        border: `1px solid ${sdgs.has(n) ? SDG[n].c : C.line}`,
+                      }}>
+                <SDGBadge n={n} size={18} />
+                <span className="text-[11px]" style={{ color: C.ink }}>{SDG[n].label}</span>
+              </button>
+            ))}
+          </FilterGroup>
+        </div>
+      )}
+
+      <div className="mt-4 px-5 flex items-center justify-between">
+        <div className="text-[11.5px]" style={{ color: C.ink3 }}>
+          <span className="font-semibold" style={{ color: C.ink }}>{filtered.length}</span> organizations
+        </div>
+        <button className="text-[11.5px] flex items-center gap-1" style={{ color: C.ink2 }}>
+          Sort: Relevance <Icon name="ChevronDown" size={12} />
+        </button>
+      </div>
+
+      <div className="mt-3 px-5 space-y-3">
+        {filtered.map(m => <OrgCard key={m.org} m={m} onOpenProfile={onOpenProfile} />)}
+        {!filtered.length && (
+          <div className="rounded-xl p-8 text-center" style={{ background: C.card, border: `1px dashed ${C.line}`, color: C.ink3 }}>
+            <Icon name="SearchX" size={22} className="mx-auto mb-2" />
+            <div className="text-[12.5px]">No members match these filters.</div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FilterGroup({ label, children, last }) {
+  return (
+    <div className={last ? '' : 'mb-3 pb-3'} style={!last ? { borderBottom: `1px solid ${C.line}` } : {}}>
+      <div className="text-[10px] uppercase tracking-[0.14em] font-semibold mb-2" style={{ color: C.ink3 }}>{label}</div>
+      <div className="flex flex-wrap gap-1.5">{children}</div>
+    </div>
+  );
+}
+
+function Chip({ children, active, onClick }) {
+  return (
+    <button onClick={onClick} className="px-2.5 py-1 rounded-full text-[11px] font-medium transition"
+      style={{
+        background: active ? C.primary : '#FAF6F4',
+        color: active ? '#fff' : C.ink2,
+        border: `1px solid ${active ? C.primary : C.line}`,
+      }}>{children}</button>
+  );
+}
+
+function OrgCard({ m, onOpenProfile }) {
+  return (
+    <div className="rounded-xl overflow-hidden" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+      {/* Organization (parent) */}
+      <div className="p-3.5 flex items-start gap-3">
+        <Avatar initials={m.initials} accent={m.accent} size={48} ring={m.tag === 'Premier'} src={m.orgPhoto} logoMode />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <div className="text-[14px] font-semibold leading-tight" style={{ color: C.ink }}>{m.org}</div>
+            {m.tag === 'Premier' && <Pill tone="gold"><Icon name="Crown" size={9} /> Premier</Pill>}
+            {m.tag === 'Verified' && <Pill tone="primary"><Icon name="BadgeCheck" size={10} /> Verified</Pill>}
+          </div>
+          <div className="text-[11.5px] mt-0.5" style={{ color: C.ink3 }}>
+            {m.type} · {m.market} · AUM {m.aum}
+          </div>
+          <div className="flex flex-wrap gap-1 mt-2">
+            {m.sdgs.map(n => <SDGBadge key={n} n={n} size={18} />)}
+          </div>
+        </div>
+      </div>
+
+      {/* Individual rep — nested */}
+      <div className="px-3.5 pb-3.5">
+        <div className="rounded-lg p-2.5 flex items-center gap-2.5"
+             style={{ background: '#FAF0EE', border: `1px solid ${C.line}` }}>
+          <div className="absolute" style={{ marginTop: -34, marginLeft: 14, width: 1, height: 28, background: C.line }} />
+          <Avatar initials={m.rep.split(' ').map(w => w[0]).join('').slice(0, 2)} accent={m.accent} size={32} online={m.online} src={m.repPhoto} />
+          <div className="flex-1 min-w-0">
+            <div className="text-[12px] font-medium truncate" style={{ color: C.ink }}>{m.rep}</div>
+            <div className="text-[10.5px] truncate" style={{ color: C.ink3 }}>{m.role}</div>
+          </div>
+          <button className="px-2 py-1 rounded-md text-[10.5px] font-medium flex items-center gap-1"
+                  style={{ background: C.primary, color: '#fff' }}>
+            <Icon name="UserPlus" size={11} /> Connect
+          </button>
+          <button onClick={() => onOpenProfile?.(m)}
+                  className="px-2 py-1 rounded-md text-[10.5px] font-medium flex items-center gap-1"
+                  style={{ background: C.goldSoft, color: '#9F1810', border: `1px solid #E5D6B0` }}>
+            <Icon name="Sparkles" size={11} /> Warm intro
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { Directory });
+
+  // === agenda.jsx ===
+// Agenda screen
+
+function Agenda() {
+  const [day, setDay] = React.useState(1);
+  const [mine, setMine] = React.useState(false);
+  const list = SESSIONS[day].filter(s => !mine || s.saved);
+
+  return (
+    <div className="pb-28">
+      {/* Conference header */}
+      <div className="px-5 pt-3">
+        <div className="rounded-2xl overflow-hidden relative" style={{ color: '#fff', minHeight: 90 }}>
+          {/* Marina Bay Sands / Singapore skyline */}
+          <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&fit=crop&q=80"
+               alt="Marina Bay Sands"
+               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          {/* dark overlay */}
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(10,10,20,0.88) 0%, rgba(20,20,50,0.75) 100%)' }} />
+          {/* content */}
+          <div className="relative z-10 p-4">
+            <div className="text-[10px] uppercase tracking-[0.18em] font-semibold" style={{ color: '#FFFFFF' }}>AVPN Global Conference</div>
+            <div className="mt-1 text-[17px] font-semibold">22–24 April · Singapore</div>
+            <div className="text-[11px] mt-0.5 text-white/55">Marina Bay Sands · 3 halls · 188 sessions</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Day tabs */}
+      <div className="mt-4 px-5 flex gap-1.5">
+        {[1, 2, 3].map(d => (
+          <button key={d} onClick={() => setDay(d)} className="flex-1 py-2.5 rounded-xl text-center transition"
+            style={{
+              background: day === d ? C.primary : C.card,
+              color: day === d ? '#fff' : C.ink2,
+              border: `1px solid ${day === d ? C.primary : C.line}`,
+            }}>
+            <div className="text-[10px] uppercase tracking-wider opacity-70">Day {d}</div>
+            <div className="text-[14px] font-semibold mt-0.5">{['22', '23', '24'][d-1]} Apr</div>
+          </button>
+        ))}
+      </div>
+
+      {/* My / All toggle */}
+      <div className="mt-4 px-5">
+        <div className="rounded-full p-1 flex" style={{ background: '#EBDFDC', border: `1px solid ${C.line}` }}>
+          <button onClick={() => setMine(false)}
+                  className="flex-1 py-1.5 rounded-full text-[12px] font-medium transition"
+                  style={{ background: !mine ? C.card : 'transparent', color: !mine ? C.ink : C.ink3,
+                           boxShadow: !mine ? '0 1px 2px rgba(0,0,0,0.04)' : 'none' }}>
+            All sessions
+          </button>
+          <button onClick={() => setMine(true)}
+                  className="flex-1 py-1.5 rounded-full text-[12px] font-medium transition flex items-center justify-center gap-1"
+                  style={{ background: mine ? C.card : 'transparent', color: mine ? C.ink : C.ink3,
+                           boxShadow: mine ? '0 1px 2px rgba(0,0,0,0.04)' : 'none' }}>
+            <Icon name="BookmarkCheck" size={12} /> My schedule
+          </button>
+        </div>
+      </div>
+
+      {/* Sessions — time-rail layout */}
+      <div className="mt-5 px-5 relative">
+        <div className="absolute" style={{ left: 53, top: 4, bottom: 4, width: 1, background: C.line }} />
+        <div className="space-y-3">
+          {list.map((s, i) => <SessionRow key={i} s={s} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SessionRow({ s }) {
+  const trackColors = {
+    Plenary:        { bg: C.primarySoft, fg: C.primaryDeep },
+    Climate:        { bg: '#DEEEDD', fg: '#244D2A' },
+    Gender:         { bg: '#FFE0DA', fg: '#7B2A1B' },
+    Health:         { bg: '#D9E9F2', fg: '#163A4F' },
+    Networking:     { bg: C.goldSoft, fg: '#9F1810' },
+    'Deal Room':    { bg: '#E8E0F2', fg: '#3A2566' },
+    'Family Office':{ bg: C.goldSoft, fg: '#9F1810' },
+    'Field Visit':  { bg: '#E2F0DE', fg: '#2A4D1F' },
+    Capacity:       { bg: '#EBE5DA', fg: '#5A4828' },
+  }[s.track] || { bg: '#F4ECEA', fg: C.ink2 };
+
+  const seatsTone = s.seats <= 5 ? 'warn' : s.seats <= 15 ? 'gold' : 'success';
+  const seatsIcon = s.seats <= 5 ? 'Flame' : 'Users';
+
+  return (
+    <div className="flex gap-3">
+      <div className="flex-shrink-0 w-12 pt-1">
+        <div className="text-[13px] font-semibold tabular-nums" style={{ color: C.ink }}>{s.time}</div>
+        <div className="text-[10px]" style={{ color: C.ink3 }}>{s.dur}</div>
+      </div>
+      <div className="relative flex-1">
+        {/* timeline dot */}
+        <div className="absolute -left-[16px] top-2 w-2 h-2 rounded-full" style={{ background: s.saved ? C.gold : C.line, border: s.saved ? `2px solid ${C.gold}` : `2px solid ${C.line}` }} />
+        <div className="rounded-xl p-3" style={{ background: C.card, border: `1px solid ${s.saved ? '#F2C8C3' : C.line}`, boxShadow: s.saved ? '0 0 0 1px rgba(226, 35, 26, 0.18)' : 'none' }}>
+          <div className="flex items-start gap-2">
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded" style={{ background: trackColors.bg, color: trackColors.fg }}>{s.track}</span>
+                {s.badge && <Pill tone={s.badge === 'Premier' ? 'gold' : s.badge === 'Off-site' ? 'neutral' : 'primary'}>{s.badge}</Pill>}
+              </div>
+              <div className="text-[13.5px] font-semibold leading-tight" style={{ color: C.ink, letterSpacing: '-0.005em' }}>{s.title}</div>
+              <div className="text-[11px] mt-1" style={{ color: C.ink2 }}>{s.speaker} · {s.org}</div>
+              <div className="flex items-center gap-3 mt-2 text-[10.5px]" style={{ color: C.ink3 }}>
+                <span className="flex items-center gap-1"><Icon name="MapPin" size={11} /> {s.room}</span>
+                <span className="flex items-center gap-1" style={{ color: seatsTone === 'warn' ? '#7B3A18' : seatsTone === 'gold' ? '#9F1810' : '#1A5A3B' }}>
+                  <Icon name={seatsIcon} size={11} /> {s.seats} seats left
+                </span>
+              </div>
+            </div>
+            <button className="p-1.5 rounded-md" style={{ background: s.saved ? C.gold : '#F4ECEA' }}>
+              <Icon name={s.saved ? 'BookmarkCheck' : 'Bookmark'} size={14} stroke={s.saved ? '#FFFFFF' : C.ink2} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { Agenda });
+
+  // === networking.jsx ===
+// Networking Hub — Direct chats + Warm Intro pipeline
+
+function Networking({ openIntro }) {
+  const [tab, setTab] = React.useState('intros'); // intros | direct
+  return (
+    <div className="pb-28">
+      <div className="px-5 pt-3">
+        <div className="text-[10px] uppercase tracking-[0.16em] font-semibold" style={{ color: C.gold }}>Networking Hub</div>
+        <div className="text-[22px] font-semibold mt-0.5" style={{ color: C.ink, letterSpacing: '-0.015em' }}>Connections</div>
+      </div>
+
+      {/* Stat strip */}
+      <div className="mt-3 px-5 grid grid-cols-3 gap-2">
+        <StatTile v="38" l="Connections" />
+        <StatTile v="3" l="Warm intros" highlight />
+        <StatTile v="7" l="Inbox" />
+      </div>
+
+      {/* Tabs */}
+      <div className="mt-5 px-5 flex gap-1 border-b" style={{ borderColor: C.line }}>
+        {[
+          ['intros', 'AVPN Warm Intros', 'Sparkles'],
+          ['direct', 'Direct messages', 'MessageCircle'],
+        ].map(([k, label, ic]) => (
+          <button key={k} onClick={() => setTab(k)}
+            className="px-3 pb-2.5 pt-1 text-[12.5px] font-medium flex items-center gap-1.5 relative"
+            style={{ color: tab === k ? C.primary : C.ink3 }}>
+            <Icon name={ic} size={13} />
+            {label}
+            {tab === k && <div className="absolute left-0 right-0 -bottom-px h-0.5" style={{ background: C.primary }} />}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'intros' ? <IntrosTab openIntro={openIntro} /> : <DirectTab />}
+    </div>
+  );
+}
+
+function StatTile({ v, l, highlight }) {
+  return (
+    <div className="rounded-xl p-3" style={{
+      background: highlight ? '#6F1613' : C.card,
+      border: `1px solid ${highlight ? '#6F1613' : C.line}`,
+      color: highlight ? '#fff' : C.ink,
+    }}>
+      <div className="text-[20px] font-semibold leading-none" style={{ letterSpacing: '-0.02em' }}>{v}</div>
+      <div className="text-[10.5px] mt-1" style={{ color: highlight ? '#FFFFFF' : C.ink3 }}>{l}</div>
+    </div>
+  );
+}
+
+function IntrosTab({ openIntro }) {
+  return (
+    <div className="mt-4 px-5">
+      {/* CTA card */}
+      <button onClick={openIntro} className="w-full text-left rounded-2xl p-4 relative overflow-hidden"
+        style={{ background: `linear-gradient(135deg, #CC8A00 0%, #FFAC20 100%)`, color: '#fff' }}>
+        <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full" style={{ background: C.gold, opacity: 0.18 }} />
+        <div className="flex items-center gap-1.5">
+          <Icon name="Sparkles" size={13} stroke={C.gold} />
+          <span className="text-[10px] uppercase tracking-[0.16em] font-semibold" style={{ color: C.gold }}>Premium service</span>
+        </div>
+        <div className="mt-1.5 text-[15px] font-semibold leading-snug">Request a warm introduction</div>
+        <div className="text-[11.5px] mt-1 text-white/65 leading-relaxed">
+          AVPN staff personally broker introductions to sensitive or high-value stakeholders.
+        </div>
+        <div className="mt-3 inline-flex items-center gap-1.5 text-[11.5px] font-medium px-3 py-1.5 rounded-full"
+             style={{ background: C.gold, color: '#FFFFFF' }}>
+          New request <Icon name="ArrowRight" size={12} />
+        </div>
+      </button>
+
+      {/* Active intros */}
+      <div className="mt-5 text-[10px] uppercase tracking-[0.14em] font-semibold" style={{ color: C.ink3 }}>
+        Active requests
+      </div>
+      <div className="mt-2 space-y-3">
+        {INTROS.map((it, i) => <IntroCard key={i} it={it} />)}
+      </div>
+    </div>
+  );
+}
+
+function IntroCard({ it }) {
+  const stages = ['Staff Reviewing', 'Outreach Initiated', 'Connected'];
+  return (
+    <div className="rounded-xl p-3.5" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex-1 min-w-0">
+          <div className="text-[13.5px] font-semibold" style={{ color: C.ink }}>{it.name}</div>
+          <div className="text-[11px] mt-0.5" style={{ color: C.ink3 }}>Requested {it.requested}</div>
+        </div>
+        <Pill tone={it.stage === 2 ? 'success' : it.stage === 1 ? 'gold' : 'neutral'}>
+          {stages[it.stage]}
+        </Pill>
+      </div>
+      <div className="text-[12px] mt-2 leading-relaxed" style={{ color: C.ink2 }}>{it.reason}</div>
+
+      {/* Pipeline */}
+      <div className="mt-3 flex items-center gap-1.5">
+        {stages.map((label, idx) => (
+          <React.Fragment key={label}>
+            <div className="flex-1 flex flex-col items-center">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold"
+                   style={{
+                     background: idx <= it.stage ? (idx === 2 ? '#1A5A3B' : C.gold) : '#EBDFDC',
+                     color: idx <= it.stage ? '#fff' : C.ink3,
+                   }}>
+                {idx < it.stage ? <Icon name="Check" size={11} /> : idx + 1}
+              </div>
+              <div className="text-[9.5px] mt-1 text-center leading-tight" style={{ color: idx <= it.stage ? C.ink : C.ink3 }}>
+                {label}
+              </div>
+            </div>
+            {idx < stages.length - 1 && (
+              <div className="h-px flex-1 -mt-3" style={{ background: idx < it.stage ? C.gold : '#EBDFDC' }} />
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+      <div className="mt-3 pt-3 flex items-center justify-between" style={{ borderTop: `1px solid ${C.line}` }}>
+        <div className="text-[10.5px]" style={{ color: C.ink3 }}>
+          <Icon name="UserCog" size={11} className="inline mr-1 -mt-0.5" /> {it.broker}
+        </div>
+        <button className="text-[11px] font-medium" style={{ color: C.primary }}>View thread →</button>
+      </div>
+    </div>
+  );
+}
+
+function DirectTab() {
+  return (
+    <div className="mt-3 px-5">
+      <div className="rounded-xl divide-y overflow-hidden" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+        {DIRECT_CHATS.map((c, i) => (
+          <div key={i} className="flex items-center gap-3 p-3" style={{ borderColor: C.line }}>
+            <Avatar initials={c.initials} accent={c.accent} size={42} online={c.unread > 0} src={c.photo} />
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5">
+                <div className="text-[13px] font-semibold truncate" style={{ color: C.ink }}>{c.name}</div>
+                <div className="text-[10.5px]" style={{ color: C.ink3 }}>· {c.org}</div>
+              </div>
+              <div className="text-[11.5px] truncate mt-0.5" style={{ color: c.unread ? C.ink : C.ink3 }}>{c.preview}</div>
+            </div>
+            <div className="flex flex-col items-end gap-1">
+              <div className="text-[10px]" style={{ color: C.ink3 }}>{c.time}</div>
+              {c.unread > 0 && (
+                <div className="w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] font-semibold"
+                     style={{ background: C.primary, color: '#fff', minWidth: 18, height: 18 }}>
+                  {c.unread}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Pending */}
+      <div className="mt-5 text-[10px] uppercase tracking-[0.14em] font-semibold" style={{ color: C.ink3 }}>
+        Pending connections (4)
+      </div>
+      <div className="mt-2 space-y-2">
+        {MEMBERS.slice(0, 2).map(m => (
+          <div key={m.org} className="flex items-center gap-2.5 p-3 rounded-xl" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+            <Avatar initials={m.rep.split(' ').map(w => w[0]).join('').slice(0, 2)} accent={m.accent} size={36} src={m.repPhoto} />
+            <div className="flex-1 min-w-0">
+              <div className="text-[12.5px] font-medium" style={{ color: C.ink }}>{m.rep}</div>
+              <div className="text-[10.5px]" style={{ color: C.ink3 }}>{m.org}</div>
+            </div>
+            <button className="px-2.5 py-1 rounded-md text-[10.5px] font-medium" style={{ background: C.primary, color: '#fff' }}>Accept</button>
+            <button className="px-2 py-1 rounded-md text-[10.5px] font-medium" style={{ background: '#F4ECEA', color: C.ink2 }}>Later</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─────────── Warm intro modal ──────────────────────────────
+function WarmIntroModal({ onClose }) {
+  const [step, setStep] = React.useState(1);
+  return (
+    <div className="absolute inset-0 z-50 flex items-end" style={{ background: 'rgba(11, 31, 26, 0.55)' }}>
+      <div className="w-full rounded-t-3xl overflow-hidden animate-[slideup_0.3s_ease-out]" style={{ background: C.bg, maxHeight: '90%' }}>
+        <div className="px-5 pt-3 pb-2 flex items-center justify-between">
+          <div className="w-10 h-1 rounded-full mx-auto" style={{ background: C.line }} />
+        </div>
+        <div className="px-5 pb-4 flex items-center justify-between">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] font-semibold flex items-center gap-1" style={{ color: C.gold }}>
+              <Icon name="Sparkles" size={11} /> AVPN Concierge
+            </div>
+            <div className="text-[17px] font-semibold mt-0.5" style={{ color: C.ink }}>Request a warm intro</div>
+          </div>
+          <button onClick={onClose} className="w-8 h-8 rounded-full flex items-center justify-center"
+                  style={{ background: C.card, border: `1px solid ${C.line}` }}>
+            <Icon name="X" size={15} />
+          </button>
+        </div>
+
+        {/* Stepper */}
+        <div className="px-5 flex items-center gap-1.5 mb-4">
+          {[1, 2, 3].map(n => (
+            <div key={n} className="flex-1 h-1 rounded-full" style={{ background: n <= step ? C.gold : '#EBDFDC' }} />
+          ))}
+        </div>
+
+        <div className="px-5 pb-6 overflow-y-auto" style={{ maxHeight: '60vh' }}>
+          {step === 1 && (
+            <div className="space-y-3">
+              <Field label="Stakeholder you'd like to meet">
+                <input className="w-full px-3 py-2.5 rounded-lg text-[13px] outline-none"
+                       defaultValue="Anand Mahindra Foundation"
+                       style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }} />
+              </Field>
+              <Field label="Your role in the introduction">
+                <select className="w-full px-3 py-2.5 rounded-lg text-[13px] outline-none"
+                        style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }}>
+                  <option>Co-investor seeking deal partner</option>
+                  <option>Grantee seeking funder</option>
+                  <option>Funder seeking field expert</option>
+                </select>
+              </Field>
+              <Field label="Why is this match strategic?">
+                <textarea rows="3" className="w-full px-3 py-2.5 rounded-lg text-[13px] outline-none resize-none"
+                          defaultValue="We're building a $50M co-fund for climate-tech in Maharashtra. AMF's portfolio in renewable energy aligns with our thesis on SDG 13."
+                          style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink }} />
+              </Field>
+            </div>
+          )}
+          {step === 2 && (
+            <div className="space-y-3">
+              <Field label="Sensitivity level">
+                <div className="grid grid-cols-3 gap-2">
+                  {['Standard', 'Sensitive', 'Confidential'].map((s, i) => (
+                    <button key={s} className="py-2 rounded-lg text-[11.5px] font-medium"
+                            style={{
+                              background: i === 1 ? C.primary : C.card,
+                              color: i === 1 ? '#fff' : C.ink2,
+                              border: `1px solid ${i === 1 ? C.primary : C.line}`,
+                            }}>{s}</button>
+                  ))}
+                </div>
+              </Field>
+              <Field label="Preferred AVPN broker (optional)">
+                <div className="rounded-lg p-3 flex items-center gap-3" style={{ background: C.card, border: `1px solid ${C.line}` }}>
+                  <Avatar initials="PN" accent="#1F4F8B" size={36} />
+                  <div className="flex-1">
+                    <div className="text-[12.5px] font-medium" style={{ color: C.ink }}>Priya Nair</div>
+                    <div className="text-[10.5px]" style={{ color: C.ink3 }}>AVPN Mumbai · India lead</div>
+                  </div>
+                  <Icon name="Check" size={16} stroke={C.primary} />
+                </div>
+              </Field>
+              <div className="rounded-lg p-3 flex gap-2.5" style={{ background: C.goldSoft, border: `1px solid #E5D6B0` }}>
+                <Icon name="Info" size={14} stroke="#7A5B23" className="mt-0.5 flex-shrink-0" />
+                <div className="text-[11px] leading-relaxed" style={{ color: '#9F1810' }}>
+                  Warm intros are reviewed by AVPN staff within 2 business days. Premier members receive priority routing.
+                </div>
+              </div>
+            </div>
+          )}
+          {step === 3 && (
+            <div className="text-center py-8">
+              <div className="w-14 h-14 rounded-full mx-auto flex items-center justify-center" style={{ background: C.primarySoft }}>
+                <Icon name="Check" size={26} stroke={C.primary} strokeWidth={2.5} />
+              </div>
+              <div className="mt-3 text-[16px] font-semibold" style={{ color: C.ink }}>Request submitted</div>
+              <div className="text-[12px] mt-1.5" style={{ color: C.ink3 }}>Priya from AVPN Mumbai will reach out by May 20.</div>
+            </div>
+          )}
+        </div>
+
+        <div className="px-5 pb-6 flex gap-2" style={{ borderTop: `1px solid ${C.line}`, paddingTop: 12 }}>
+          {step > 1 && step < 3 && (
+            <button onClick={() => setStep(step - 1)} className="px-4 py-2.5 rounded-lg text-[12.5px] font-medium"
+                    style={{ background: C.card, border: `1px solid ${C.line}`, color: C.ink2 }}>Back</button>
+          )}
+          <button onClick={() => step < 3 ? setStep(step + 1) : onClose()}
+                  className="flex-1 py-2.5 rounded-lg text-[12.5px] font-semibold"
+                  style={{ background: C.primary, color: '#fff' }}>
+            {step === 1 ? 'Continue' : step === 2 ? 'Submit request' : 'Done'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Field({ label, children }) {
+  return (
+    <div>
+      <div className="text-[10px] uppercase tracking-[0.14em] font-semibold mb-1.5" style={{ color: C.ink3 }}>{label}</div>
+      {children}
+    </div>
+  );
+}
+
+Object.assign(window, { Networking, WarmIntroModal });
+
+  // === qr.jsx ===
+// QR pass overlay
+
+function QRPass({ onClose }) {
+  // build a fake QR-ish pattern
+  const cells = React.useMemo(() => {
+    const grid = [];
+    const N = 25;
+    // deterministic pseudo-random
+    let seed = 7;
+    const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    for (let y = 0; y < N; y++) {
+      const row = [];
+      for (let x = 0; x < N; x++) {
+        // corner finders
+        const corner = (x < 7 && y < 7) || (x >= N - 7 && y < 7) || (x < 7 && y >= N - 7);
+        if (corner) {
+          const cx = x < 7 ? x : N - 1 - x;
+          const cy = y < 7 ? y : N - 1 - y;
+          const inOuter = cx === 0 || cx === 6 || cy === 0 || cy === 6;
+          const inInner = cx >= 2 && cx <= 4 && cy >= 2 && cy <= 4;
+          row.push(inOuter || inInner ? 1 : 0);
+        } else {
+          row.push(rand() > 0.55 ? 1 : 0);
+        }
+      }
+      grid.push(row);
+    }
+    return grid;
+  }, []);
+
+  return (
+    <div className="absolute inset-0 z-50 flex items-center justify-center" style={{ background: 'rgba(11, 31, 26, 0.7)' }}>
+      <div className="mx-5 rounded-3xl overflow-hidden w-[88%] relative" style={{ background: '#fff', border: `1px solid ${C.line}` }}>
+        {/* header */}
+        <div className="p-4 relative" style={{ background: C.ink, color: '#fff' }}>
+          <button onClick={onClose} className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.1)' }}>
+            <Icon name="X" size={14} />
+          </button>
+          <div className="text-[10px] uppercase tracking-[0.18em] font-semibold" style={{ color: C.gold }}>AVPN Global · Day 1</div>
+          <div className="text-[15.5px] font-semibold mt-0.5">Belinda Tanoto</div>
+          <div className="text-[11px] text-white/55">Trustee · Tanoto Foundation</div>
+        </div>
+
+        {/* QR */}
+        <div className="p-5 flex flex-col items-center">
+          <div className="p-3.5 rounded-2xl" style={{ background: '#fff', border: `2px solid ${C.gold}` }}>
+            <svg width="180" height="180" viewBox="0 0 25 25" shapeRendering="crispEdges">
+              {cells.map((row, y) => row.map((c, x) => c ? (
+                <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill={C.ink} />
+              ) : null))}
+              {/* center logo */}
+              <rect x={10} y={10} width={5} height={5} fill="#fff" />
+              <rect x={11} y={11} width={3} height={3} fill={C.primary} />
+            </svg>
+          </div>
+          <div className="text-[11px] mt-3 text-center" style={{ color: C.ink3 }}>
+            Scan at session doors for entry, or<br/>tap-to-share for lead exchange
+          </div>
+        </div>
+
+        {/* actions */}
+        <div className="px-5 pb-5 grid grid-cols-3 gap-2">
+          {[
+            { ic: 'Nfc', l: 'Tap NFC' },
+            { ic: 'ScanLine', l: 'Scan badge' },
+            { ic: 'Download', l: 'Save pass' },
+          ].map(a => (
+            <button key={a.l} className="flex flex-col items-center gap-1.5 py-3 rounded-xl"
+                    style={{ background: '#FAF6F4', border: `1px solid ${C.line}` }}>
+              <Icon name={a.ic} size={18} stroke={C.primary} />
+              <div className="text-[10.5px] font-medium" style={{ color: C.ink }}>{a.l}</div>
+            </button>
+          ))}
+        </div>
+
+        {/* footer */}
+        <div className="px-5 py-3 flex items-center justify-between text-[10.5px]"
+             style={{ background: '#FAF0EE', borderTop: `1px solid ${C.line}`, color: C.ink3 }}>
+          <span><Icon name="ShieldCheck" size={11} className="inline mr-1 -mt-0.5" /> Verified Premier</span>
+          <span>ID: AVPN-26-04812</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { QRPass });
+
+  // === app.jsx ===
+// App shell — mode toggle, bottom nav, screen routing, device frame
+
+function App() {
+  const [mode, setMode] = React.useState('event'); // 'community' | 'event'
+  const [tab, setTab] = React.useState('home');
+  const [showQR, setShowQR] = React.useState(false);
+  const [showIntro, setShowIntro] = React.useState(false);
+
+  const isEvent = mode === 'event';
+
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center p-6"
+    style={{
+      background: `radial-gradient(circle at 30% 20%, #2A0E0C 0%, #150806 50%, #080302 100%)`,
+      fontFamily: '"Inter", -apple-system, system-ui, sans-serif'
+    }}>
+      {/* Desktop wrapper — frames the phone */}
+      <div className="flex gap-10 items-start">
+        {/* Left rail: brand + meta */}
+        <div className="hidden md:block w-[320px] pt-6 text-white">
+          <div className="flex items-center gap-2.5">
+            <img src={typeof window !== 'undefined' && window.__resources && window.__resources.avpnLogo || "assets/avpn-logo.png"} alt="AVPN" style={{ height: 26, width: 'auto' }} />
+            <div className="h-6 w-px bg-white/15" />
+            <div className="whitespace-nowrap">
+              <div className="text-[12px] font-semibold tracking-tight text-white/90">Community + Event</div>
+            </div>
+          </div>
+          <div className="mt-8 text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: '#F37068' }}>App State</div>
+          <div className="mt-2 text-[26px] font-semibold leading-tight">
+            One app.<br />
+            <span className="text-white/55">Two modes.</span>
+          </div>
+          <div className="mt-3 text-[12.5px] leading-relaxed text-white/55">The AVPN Community + Event App is a unified, private professional networking platform designed to serve as a year-round relationship and ecosystem layer for AVPN members.
+
+          </div>
+
+          <div className="mt-7 space-y-2">
+            <RailRow active={!isEvent} ic="TreePine" t="Year-Round Community" s="Discovery · matching · warm intros" onClick={() => setMode('community')} />
+            <RailRow active={isEvent} ic="Zap" t="Active Event" s="AVPN Global · Singapore · 22–24 Apr" onClick={() => setMode('event')} />
+          </div>
+
+          <div className="mt-10 pt-5 border-t border-white/10 text-[11px] text-white/40 space-y-1.5">
+            <div></div>
+            <div></div>
+            <div>Use ← / → arrows or click tabs to navigate</div>
+          </div>
+        </div>
+
+        {/* Phone container */}
+        <div className="relative">
+          <div className="relative rounded-[44px] overflow-hidden flex flex-col"
+          style={{
+            width: 400, height: 820,
+            background: C.bg,
+            boxShadow: '0 50px 100px -20px rgba(0,0,0,0.5), 0 0 0 8px #1A1A1A, 0 0 0 9px #2A2A2A'
+          }}>
+
+            {/* iOS-ish status bar */}
+            <div className="relative h-11 flex items-center justify-between px-7 flex-shrink-0" style={{ background: C.bg }}>
+              <div className="text-[14px] font-semibold tabular-nums" style={{ color: C.ink }}>9:41</div>
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[120px] h-7 rounded-full" style={{ background: '#0B0B0B' }} />
+              <div className="flex items-center gap-1.5">
+                <Icon name="Signal" size={14} stroke={C.ink} strokeWidth={2} />
+                <Icon name="Wifi" size={14} stroke={C.ink} strokeWidth={2} />
+                <div className="w-6 h-3 rounded-sm border" style={{ borderColor: C.ink }}>
+                  <div className="h-full rounded-sm" style={{ width: '80%', background: C.ink }} />
+                </div>
+              </div>
+            </div>
+
+            {/* Mode toggle — the signature */}
+            <ModeToggle mode={mode} setMode={setMode} />
+
+            {/* Scrollable screen */}
+            <div className="flex-1 overflow-y-auto relative" style={{ background: C.bg }}>
+              {tab === 'home' && (isEvent ?
+              <HomeEvent openQR={() => setShowQR(true)} goAgenda={() => setTab('agenda')} goNetworking={() => setTab('network')} /> :
+              <HomeYearRound openQR={() => setShowQR(true)} goDirectory={() => setTab('directory')} goNetworking={() => setTab('network')} />)}
+              {tab === 'directory' && <Directory onOpenProfile={() => setShowIntro(true)} />}
+              {tab === 'network' && <Networking openIntro={() => setShowIntro(true)} />}
+              {tab === 'agenda' && <Agenda />}
+            </div>
+
+            {/* Floating QR — only in event mode */}
+            {isEvent && tab !== 'agenda' && !showQR && !showIntro &&
+            <button onClick={() => setShowQR(true)}
+            className="absolute right-4 z-30 w-13 h-13 rounded-full flex items-center justify-center shadow-lg"
+            style={{ bottom: 92, width: 52, height: 52, background: C.gold, boxShadow: '0 8px 24px rgba(226, 35, 26, 0.45)' }}>
+                <Icon name="QrCode" size={22} stroke="#FFFFFF" />
+              </button>
+            }
+
+            {/* Overlays */}
+            {showQR && <QRPass onClose={() => setShowQR(false)} />}
+            {showIntro && <WarmIntroModal onClose={() => setShowIntro(false)} />}
+
+            {/* Bottom nav */}
+            <BottomNav tab={tab} setTab={setTab} isEvent={isEvent} />
+
+            {/* Home indicator */}
+            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-32 h-1 rounded-full pointer-events-none" style={{ background: 'rgba(0,0,0,0.3)' }} />
+          </div>
+        </div>
+
+        {/* Right rail: contextual info */}
+        <div className="hidden lg:block w-[280px] pt-6 text-white">
+          <div className="text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: '#F37068' }}>
+            What's different
+          </div>
+          <div className="mt-3 space-y-3">
+            {[
+            { t: 'Persistent member graph', s: 'Connections, intros, and history survive after the conference ends.' },
+            { t: 'Curated by AVPN staff', s: 'Warm introductions are brokered by humans — not auto-DMs.' },
+            { t: 'SDG-native', s: 'Capital flows, deals and sessions are filtered by UN goals first.' }].
+            map((x) =>
+            <div key={x.t} className="pl-3 border-l" style={{ borderColor: 'rgba(226, 35, 26, 0.4)' }}>
+                <div className="text-[12.5px] font-semibold">{x.t}</div>
+                <div className="text-[11px] text-white/55 mt-0.5 leading-relaxed">{x.s}</div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-10 text-[11px] uppercase tracking-[0.18em] font-semibold" style={{ color: '#F37068' }}>
+            Now showing
+          </div>
+          <div className="mt-3 rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="text-[11px]" style={{ color: '#F37068' }}>{isEvent ? 'Active Event Mode' : 'Year-Round Community Mode'}</div>
+            <div className="text-[12.5px] font-semibold mt-1 capitalize">{tab === 'home' ? 'Dashboard' : tab === 'directory' ? 'Member Directory' : tab === 'network' ? 'Networking Hub' : 'Agenda'}</div>
+          </div>
+        </div>
+      </div>
+    </div>);
+
+}
+
+function RailRow({ active, ic, t, s, onClick }) {
+  return (
+    <button onClick={onClick} className="w-full text-left rounded-xl p-3 transition flex items-start gap-2.5"
+    style={{
+      background: active ? 'rgba(226, 35, 26, 0.10)' : 'rgba(255,255,255,0.03)',
+      border: active ? '1px solid rgba(226, 35, 26, 0.4)' : '1px solid rgba(255,255,255,0.06)'
+    }}>
+      <div className="w-7 h-7 rounded-md flex items-center justify-center mt-0.5 flex-shrink-0"
+      style={{ background: active ? '#B89149' : 'rgba(255,255,255,0.06)' }}>
+        <Icon name={ic} size={14} stroke={active ? '#FFFFFF' : '#fff'} />
+      </div>
+      <div className="flex-1">
+        <div className="text-[12.5px] font-semibold text-white">{t}</div>
+        <div className="text-[10.5px] text-white/50 mt-0.5">{s}</div>
+      </div>
+      {active && <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: '#7A1612' }} />}
+    </button>);
+
+}
+
+// ─── In-app mode toggle (signature element, top of screen) ─────
+function ModeToggle({ mode, setMode }) {
+  const isEvent = mode === 'event';
+  return (
+    <div className="px-4 pt-2 pb-3 flex-shrink-0" style={{ background: C.bg }}>
+      <div className="rounded-2xl p-1 flex relative"
+      style={{
+        background: '#FDE9E7',
+        border: '1px solid #F4B5AE',
+        transition: 'all 0.4s ease'
+      }}>
+        <button onClick={() => setMode('community')}
+        className="flex-1 py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 transition relative z-10 whitespace-nowrap"
+        style={{
+          background: !isEvent ? C.primary : 'transparent',
+          color: !isEvent ? '#fff' : C.primaryDeep,
+          boxShadow: !isEvent ? '0 1px 3px rgba(0,0,0,0.15)' : 'none'
+        }}>
+          <Icon name="TreePine" size={13} strokeWidth={2} />
+          <span className="text-[11.5px] font-semibold tracking-tight">Year-Round</span>
+        </button>
+        <button onClick={() => setMode('event')}
+        className="flex-1 py-2 px-2 rounded-xl flex items-center justify-center gap-1.5 transition relative z-10 whitespace-nowrap"
+        style={{
+          background: isEvent ? C.primary : 'transparent',
+          color: isEvent ? '#fff' : C.primaryDeep,
+          boxShadow: isEvent ? '0 1px 3px rgba(0,0,0,0.15)' : 'none'
+        }}>
+          <Icon name="Zap" size={13} strokeWidth={2.5} />
+          <span className="text-[11.5px] font-semibold tracking-tight">Active Event</span>
+          {isEvent &&
+          <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-px rounded ml-0.5"
+          style={{ background: 'rgba(255,255,255,0.22)', color: '#FFFFFF' }}>
+              <span className="w-1 h-1 rounded-full bg-white animate-pulse" />Live
+            </span>
+          }
+        </button>
+      </div>
+    </div>);
+
+}
+
+// ─── Bottom nav ────────────────────────────────────────────────
+function BottomNav({ tab, setTab, isEvent }) {
+  const items = [
+  { k: 'home', l: 'Home', ic: 'Home' },
+  { k: 'directory', l: 'Directory', ic: 'BookUser' },
+  { k: 'network', l: 'Network', ic: 'MessagesSquare', badge: 3 },
+  { k: 'agenda', l: 'Agenda', ic: 'CalendarDays', hideUnlessEvent: false }];
+
+  return (
+    <div className="absolute left-0 right-0 bottom-0 pb-7 pt-2 px-2 z-20"
+    style={{
+      background: 'linear-gradient(to top, rgba(244,242,236,1) 30%, rgba(244,242,236,0.92) 80%, rgba(244,242,236,0) 100%)'
+    }}>
+      <div className="rounded-2xl p-1 flex"
+      style={{
+        background: 'rgba(255,255,255,0.92)',
+        backdropFilter: 'blur(12px)',
+        border: `1px solid ${C.line}`,
+        boxShadow: '0 8px 24px rgba(11,31,26,0.06), 0 2px 6px rgba(11,31,26,0.04)'
+      }}>
+        {items.map((it) => {
+          const active = tab === it.k;
+          return (
+            <button key={it.k} onClick={() => setTab(it.k)}
+            className="flex-1 flex flex-col items-center gap-0.5 py-2 rounded-xl relative transition"
+            style={{
+              background: active ? C.primary : 'transparent',
+              color: active ? '#fff' : C.ink2
+            }}>
+              <div className="relative">
+                <Icon name={it.ic} size={18} strokeWidth={active ? 2 : 1.75} />
+                {it.badge && !active &&
+                <span className="absolute -top-1 -right-1.5 min-w-[14px] h-[14px] px-1 rounded-full text-[8.5px] font-bold flex items-center justify-center"
+                style={{ background: C.gold, color: '#FFFFFF' }}>{it.badge}</span>
+                }
+              </div>
+              <span className="text-[9.5px] font-semibold tracking-tight">{it.l}</span>
+            </button>);
+
+        })}
+      </div>
+    </div>);
+
+}
+
+Object.assign(window, { App });
+  const mount = () => { if (!window.App) return setTimeout(mount, 30); ReactDOM.createRoot(document.getElementById('root')).render(<App />); }; mount();
+  </script>
+</body></html>
